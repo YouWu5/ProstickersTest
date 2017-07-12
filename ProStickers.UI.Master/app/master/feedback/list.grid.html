@@ -1,0 +1,70 @@
+﻿<div set-footer>
+    <div ng-show="fo.vm.Data != null && fo.vm.Data.length > 0">
+        <div class="col-sm-12 section-height">
+            <div class="row">
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12 no-padding-bottom">
+                    <label class="section-heading">Search results ({{ fo.vm.RecordsCount }})</label>
+                </div>
+                <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6 no-padding-bottom padding-10-right">
+                    <div class="dataTables_pagesize">
+                        <div>
+                            <div>
+                                <div>
+                                    <span class="padding-10-left hidden-xs">
+                                        <label class="grid-label">Results to show:</label>
+                                        <select class="Grid-Select" ng-options="s for s in fo.vm.PageSizeOptions" name="PageSize" ng-model="fo.vm.PageSize" ng-change="fo.listOperation('ChangePageSize','','')"></select>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                            <thead>
+                                <tr>
+                                    <th ng-class="{ 'sorting sorting_desc' : (fo.vm.PreviousSortedColumn == value && fo.vm.SortDir == 'DESC') ,'sorting sorting_asc' : (fo.vm.PreviousSortedColumn == value && fo.vm.SortDir == 'ASC') ,'sorting' : (fo.vm.PreviousSortedColumn !== value) }" ng-if="fo.vm.IsSortable" ng-repeat="key in fo.vm.ColumnList"
+                                        ng-init="value = key.Value"
+                                        ng-click="fo.listOperation('Sort','',key.Value)"><a href="">{{ key.Text }}</a></th>
+                                </tr>
+                            </thead>
+                            <tr ng-repeat="item in fo.vm.Data">
+                                <td class="link-transaction">
+                                    {{item.DesignNo}}
+                                    <a href="" class="" ng-click="fo.OpenDetail(item.CustomerID,item.DesignNo)">
+                                        <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                    </a>
+                                </td>
+                                <td>{{item.CustomerName}}</td>
+                                <td class="text-center">{{item.FeedbackDate}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <paginate></paginate>
+            </div>
+        </div>
+        <div class="row col-sm-12 col-xs-12">
+            <div style="padding-bottom:{{fo.lv.setFooterPaddingRecord}}"></div>
+        </div>
+    </div>
+    <div ng-hide="fo.vm.Data.length > 0" class="section-height">
+        <div ng-show="fo.vm.Data != undefined && fo.vm.Data != null">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="note-detail">No feedback found.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-sm-12 col-xs-12">
+            <div style="padding-bottom:{{fo.lv.setFooterPaddingNoRecord}}"></div>
+        </div>
+    </div>
+</div>

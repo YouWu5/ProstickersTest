@@ -1,0 +1,227 @@
+﻿<div set-footer>
+    <div class="page-head-container" fix-height>
+        <div class="col-sm-12 no-padding header-flex">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 col-lmsx-8 col-lms-9 col-lm-9 col-l-9 col-xl-9 col-xxl-10">
+                <label class="main-heading">{{ fo.lv.title }}</label>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-5 col-lg-4 col-lmsx-4 col-lms-3 col-lm-3 col-l-3 col-xl-3 col-xxl-2">
+                <div class="button-container">
+                    <a title="Cancel" ng-click="fo.Cancel()" class="button button-grey">Cancel</a>
+                    <a title="Save" ng-click="fo.Save()" class="button button-green">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="TrackingUpdateForm" id="TrackingUpdateForm" scroll-on-validation="">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Order Details</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Order number</label>
+                                    <label class="note-detail">{{fo.vm.OrderNumber}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Order date</label>
+                                    <label class="note-detail">{{fo.vm.OrderDate | date:'MM/dd/yyyy'}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Status</label>
+                                    <label class="note-detail">{{fo.vm.OrderStatus}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Tracking number</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="trackingNumber" maxlength="40" ng-required="true" ng-model="fo.vm.TrackingNumber" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="TrackingUpdateForm.trackingNumber.$error" ng-if="TrackingUpdateForm.trackingNumber.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-sm-12 col-xs-12 no-padding" ng-show="fo.vm.DesignImagePrice>0">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="control-label">Decal price</label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="text-right note-detail note-detail-form">{{fo.vm.DesignImagePrice | currency}}</label>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12  no-padding" ng-show="fo.vm.VectorFilePrice>0">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="control-label">Design file price</label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="text-right note-detail note-detail-form">{{fo.vm.VectorFilePrice | currency}}</label>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12  no-padding" ng-show="fo.vm.ShippingPrice>0">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="control-label">Shipping price</label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="text-right note-detail note-detail-form">{{fo.vm.ShippingPrice | currency}}</label>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 field-validation-error">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <div class="line-1"></div>
+                                    <div class="col-sm-12 col-xs-12 field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-xs-12  no-padding" ng-show="fo.vm.Amount>0">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="control-label">Total</label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 no-padding">
+                                            <label class="text-right note-detail note-detail-form bold">{{fo.vm.Amount | currency}}</label>
+                                        </div>
+                                        <div class="col-sm-12 col-xs-12 field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Customer Details</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Customer name</label>
+                                    <label class="note-detail">{{fo.vm.CustomerName}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div ng-if="fo.vm.ShippingAddress !== null && fo.vm.ShippingAddress !== undefined && fo.vm.ShippingAddress !== ''" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Shipping address</label>
+                                    <label class="note-detail">{{fo.vm.ShippingAddress}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Design Details</label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-Flex">
+                                <div ng-if="fo.lv.uploadImage !== null && fo.lv.uploadImage !== ' ' && fo.lv.uploadImage !== undefined" class="col-sm-12 no-padding">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <label class="control-label">Design image</label>
+                                        <div>
+                                            <img class="ImageInForm" ng-src="{{fo.lv.uploadImage}}" />
+                                        </div>
+                                        <div class="field-validation-error col-sm-12 col-xs-12">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-if="fo.vm.DesignNumber !==null && fo.vm.DesignNumber !== undefined && fo.vm.DesignNumber!== ''" class="col-sm-12 no-padding">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                        <label class="control-label">Design number</label>
+                                        <label class="note-detail note-detail-form">{{fo.vm.DesignNumber}}</label>
+                                        <div class="field-validation-error">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4 ">
+                                        <label class="control-label">&nbsp;</label>
+                                        <a id="downloadedImg" download></a>
+                                        <a ng-href="" title="Download vector file" class="button button-green" ng-click="fo.downloadFile()">Download design file</a>
+                                        <div class="field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div ng-if="fo.vm.Length  !==null && fo.vm.Length  !== undefined && fo.vm.Length !== ''" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Length (in inches)</label>
+                                    <label class="note-detail text-right">{{fo.vm.Length}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div ng-if="fo.vm.Width !==null && fo.vm.Width !== undefined && fo.vm.Width !== ''" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Height (in inches)</label>
+                                    <label class="note-detail text-right">{{fo.vm.Width}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div ng-if="fo.vm.PurchaseTypeID !==null && fo.vm.PurchaseTypeID !== undefined && fo.vm.PurchaseTypeID !== ''" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Quantity of decals ordered</label>
+                                    <label class="note-detail text-right" ng-show="fo.vm.PurchaseTypeID===3||fo.vm.PurchaseTypeID===1">{{fo.vm.Quantity}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 margin-20-bottom">
+                                <div class="col-xs-12 col-sm-12 col-lg-9 col-md-9" ng-if="fo.vm.ColorList.length > 0">
+                                    <label class="control-label">Color choice(s)</label>
+                                    <div class="col-sm-12 no-padding selected-color-container">
+                                        <ul class="list-Flex order-list-Flex">
+                                            <li class="listFlex-item" ng-repeat="item in fo.vm.ColorList">
+                                                <div>
+                                                    <div class="listFlex-content checkIconCategories checkIconCategories-order">
+                                                        <div class="text-center categorieslabel"><label><img src="{{item.ImageGUID}}" /></label></div>
+                                                        <div class="text-center">
+                                                            <label ng-if="item.Name!==null">{{item.Name}}</label>
+                                                            <label ng-if="item.Name===null">&nbsp;</label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="control-label text-center padding-10-top">Color {{item.ColorSequence}}</label>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>
+</div>
+
+<div class="page-footer">&nbsp;</div>

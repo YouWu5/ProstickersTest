@@ -1,0 +1,209 @@
+﻿<div set-footer>
+    <div class="page-head-container" fix-height>
+        <div class="col-sm-12 no-padding header-flex">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 col-lmsx-8 col-lms-9 col-lm-9 col-l-9 col-xl-9 col-xxl-10">
+                <!--<label class="main-heading">{{ fo.lv.title }}</label>-->
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-5 col-lg-4 col-lmsx-4 col-lms-3 col-lm-3 col-l-3 col-xl-3 col-xxl-2">
+                <div class="button-container">
+                    <a title="Customer Profile" ng-click="fo.profile()" class="button button-grey">Customer profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form name="CustomerHomeForm" id="CustomerHomeForm">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12 col-Flex col-Flex-align-end pageHeadingLink">
+                                    <div class="col-sm-4 col-xs-12 no-padding name">
+                                        <label class="section-heading">Your Appointments</label>
+                                    </div>
+                                    <div class="col-sm-8 col-xs-12 no-padding linkButton">
+                                        <a title="Connect Now" ng-click="fo.contactMe()" class="button button-green">Connect Now</a>
+                                        <a title="Add Calendar Appointment" ng-click="fo.addAppointment()" class="button button-green">Add Calendar Appointment</a>
+                                        <a title="View More" ng-href="" ng-click="fo.moreAppointment()" class="button button-green">View More</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-show="fo.lv.appointmentList != null && fo.lv.appointmentList.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Appointment number</th>
+                                                    <th>Appointment date time</th>
+                                                    <th>Request date time</th>
+                                                </tr>
+                                            </thead>
+                                            <tr ng-repeat="item in fo.lv.appointmentList">
+                                                <td class="link-transaction">
+                                                    {{item.AppointmentNumber}}
+                                                    <a href="" class="" ng-click="fo.OpenAppointmentDetail(item.AppointmentNumber)">
+                                                        <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                                    </a>
+                                                </td>
+                                                <td>{{item.AppointmentDateTime}}</td>
+                                                <td>{{item.RequestDateTime}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-hide="fo.lv.appointmentList.length > 0" class="section-height">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="note-detail">No appointments found.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-Flex col-Flex-align-end pageHeadingLink">
+                                    <div class="col-sm-6 col-xs-12 no-padding name">
+                                        <label class="section-heading">Your Orders</label>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 no-padding linkButton">
+                                        <a ng-href="" ng-click="fo.moreOrders()" class="button button-green" title="View More">View More</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-show="fo.lv.ordersList != null && fo.lv.ordersList.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order number</th>
+                                                    <th>Order date</th>
+                                                    <th>Design number</th>
+                                                    <th>Status</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tr ng-repeat="item in fo.lv.ordersList">
+                                                <td class="link-transaction">
+                                                    {{item.OrderNumber}}
+                                                    <a href="" class="" ng-click="fo.OpenOrderDetail(item.OrderNumber)">
+                                                        <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                                    </a>
+                                                </td>
+                                                <td>{{item.OrderDate | date: 'MM/dd/yyyy'}}</td>
+                                                <td>{{item.DesignNumber}}</td>
+                                                <td>{{item.OrderStatus}}</td>
+                                                <td class="text-right">{{item.Amount | currency}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-hide="fo.lv.ordersList.length > 0" class="section-height">
+                                    <div>
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="note-detail">No orders found.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-Flex col-Flex-align-end pageHeadingLink">
+                                    <div class="col-sm-6 col-xs-12 no-padding name">
+                                        <label class="section-heading">Your Designs</label>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 no-padding linkButton">
+                                        <a ng-href="" ng-click="fo.moreDesigns()" class="button button-green" title="View More">View More</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-show="fo.lv.designList != null && fo.lv.designList.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Design image</th>
+                                                    <th>Design number</th>
+                                                </tr>
+                                            </thead>
+                                            <tr ng-repeat="item in fo.lv.designList track by $index">
+                                                <td class="imageInTable">
+                                                    <div class="link-transaction-image">
+                                                        <img class="companyLogoNew" src="{{item.DesignImage.ImageBuffer}}" />
+                                                        <span class="image-link">
+                                                            <a href="" ng-click="fo.OpenDesignDetail(item.DesignNumber)">
+                                                                <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td class="link-transaction">
+                                                    {{item.DesignNumber}}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-hide="fo.lv.designList.length > 0" class="section-height">
+                                    <div ng-show="fo.lv.designList != undefined && fo.lv.designList != null">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="note-detail">No designs found.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 col-Flex col-Flex-align-end pageHeadingLink">
+                                    <div class="col-sm-6 col-xs-12 no-padding name">
+                                        <label class="section-heading">Your Files</label>
+                                    </div>
+                                    <div class="col-sm-6 col-xs-12 no-padding linkButton">
+                                        <a ng-href="" ng-click="fo.moreFiles()" class="button button-green" title="View More">View More</a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-show="fo.lv.filesList != null && fo.lv.filesList.length > 0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>Files</th>
+                                                </tr>
+                                                <tr></tr>
+                                            </thead>
+                                            <tr ng-repeat="item in fo.lv.filesList track by $index">
+                                                <td>{{item}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-hide="fo.lv.filesList.length > 0" class="section-height">
+                                    <div ng-show="fo.lv.filesList != undefined && fo.lv.filesList != null">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="note-detail">No files found.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>
+</div>
+
+<div class="page-footer">&nbsp;</div>

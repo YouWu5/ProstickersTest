@@ -1,0 +1,411 @@
+﻿<div class="page-container">
+    <div class="col-sm-12 no-padding">
+        <div class="page-head-container" fix-height>
+            <div class="col-sm-12 no-padding header-flex">
+                <div class="col-sm-8">
+                    <label class="main-heading">{{ fo.lv.title }}</label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="button-container">
+                        <a title="Close" ng-click="fo.Close()" class="button button-grey">Close</a>
+                        <a title="Save" ng-click="fo.save()" ng-class="{ 'save-disable' : (fo.isSubmitted())}" class="button button-green">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="AppointmentDetailForm" id="AppointmentDetailForm" scroll-on-validation="">
+        <div class="col-sm-12 no-padding">
+            <div class="page-without-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Appointment number</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentNumber}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Appointment date time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentDateTime}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Customer</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.CustomerName}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Customer contact number</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.CustomerContactNumber}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Request date time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.RequestDateTime}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4">
+                                    <label class="bold">Status</label>
+                                    <label class="note-detail note-detail-form">{{fo.lv.AppointmentStatus}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-show="fo.lv.AppointmentStatus === 'Initiated'||fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold">Call start time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.CallStartTime|date:'hh:mm a'}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-show="fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold">Call end time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.CallEndTime|date:'hh:mm a'}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-show="fo.vm.IsCancel">
+                                    <label class="bold glyphicon-asterisk">Cancellation reason</label>
+                                    <div>
+                                        <textarea ng-show="fo.lv.AppointmentStatus!=='Cancelled'" name="Reason" ng-required="fo.vm.IsCancel" ng-model="fo.vm.CancellationReason"></textarea>
+                                        <div ng-show="fo.lv.AppointmentStatus==='Cancelled'" class="note-detail keyword">{{ fo.vm.CancellationReason }}</div>
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="AppointmentDetailForm.Reason.$error" ng-if="AppointmentDetailForm.Reason.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-hide="fo.lv.IsCancelled||fo.vm.IsCancel||fo.lv.AppointmentStatus === 'Initiated'||fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold">&nbsp;</label>
+                                    <div>
+                                        <a title="Initiate call" ng-click="fo.InitiateCall()" ng-class="{ 'save-disable' : fo.lv.IsEnabled}" class="button btn-info">Initiate call</a>
+                                    </div>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-hide="fo.lv.AppointmentStatus === 'Cancelled'||fo.lv.AppointmentStatus === 'Completed'||fo.lv.AppointmentStatus === 'Scheduled'">
+                                    <label class="bold">&nbsp;</label>
+                                    <div>
+                                        <a title="Complete call" ng-click="fo.CompleteCall()" class="button btn-info">Complete call</a>
+                                    </div>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-hide="fo.vm.IsCancel||fo.lv.AppointmentStatus === 'Initiated'||fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold hidden-xs">&nbsp;</label>
+                                    <div>
+                                        <a title="Cancel" ng-click="fo.CancelCall()" class="button button-red">Cancel</a>
+                                    </div>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <label class="bold">Meeting link</label>
+                                    <input type="text" autocomplete="off" ng-model="fo.vm.MeetingLink" name="MeetingLink" ng-change="fo.lv.linkChanged = true;" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <label class="control-label">Designer's Notes</label>
+                                    <textarea autocomplete="off" name="DesignerNote" maxlength="1500" ng-model="fo.vm.DesignerNote" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12" ng-hide="fo.vm.StatusID===5||fo.vm.StatusID===4">
+                                <div class="col-sm-4" ng-show="fo.lv.AppointmentStatus === 'Initiated'||fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold">&nbsp;</label>
+                                    <span class="file-input button button-green import-button btn-file" title="Browse">
+                                        Upload design file <input type="file" title="Browse" ng-click="fo.clear('design')" ng-model="fo.lv.novalue" class="filestyle" accept="image/*" file-read="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
+                                    </span>
+                                    <div ng-if="fo.lv.uploadImage !== ' '" class="padding-30-top">
+                                        <img class="companyLogoNew" ng-src="{{fo.lv.uploadImage}}" />
+                                        <label class="bold">{{fo.lv.DesignName}}</label>
+                                        <a href="" class="fa fa-times padding-10-left" ng-click="fo.lv.uploadImage=' '"></a>
+                                    </div>
+                                    <div class="field-validation-error col-sm-12 col-xs-12">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4" ng-show="fo.lv.AppointmentStatus === 'Initiated'||fo.lv.AppointmentStatus === 'Completed'">
+                                    <label class="bold">&nbsp;</label>
+                                    <span class="file-input button button-green import-button btn-file" title="Browse">
+                                        Upload vector file <input type="file" title="Browse" ng-click="fo.clear('vector')" ng-model="fo.lv.novalue1" class="filestyle" accept="image/*" file-read="fo.lv.uploadVector" clear-function="fo.clearImage()" id="img">
+                                    </span>
+                                    <div ng-if="fo.lv.uploadVector !== ' '" class="padding-30-top">
+                                        <label class="bold">{{fo.lv.VectorName}}</label>
+                                        <a href="" class="fa fa-times padding-10-left" ng-click="fo.lv.uploadVector=' '"></a>
+                                    </div> <div class="field-validation-error col-sm-12 col-xs-12">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4" ng-show="fo.vm.AspectRatio!==0||fo.lv.uploadVector !== ' '||fo.lv.uploadImage !== ' '">
+                                    <label class="bold">Aspect Ratio</label>
+                                    <input type="text" autocomplete="off" ng-model="fo.vm.AspectRatio" ng-required="fo.lv.uploadVector !== ' '||fo.lv.uploadImage !== ' '" name="AspectRatio" maxlength="6" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="AppointmentDetailForm.AspectRatio.$error" ng-if="AppointmentDetailForm.AspectRatio.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-12">
+
+                                    <div class="row">
+                                        <div class="col-sm-12 pageHeadingLink">
+                                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6 name">
+                                                <label class="section-heading">Other files not visible to customer</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6 linkButton">
+
+                                                <span class="file-input button button-green import-button btn-file" title="Browse" ng-if="fo.lv.uploadOtherImage === ' '">
+                                                    Other files <input type="file" title="Upload other files" ng-click="fo.clear('other')" ng-model="fo.lv.novalue3" class="filestyle" accept="image/*" file-read="fo.lv.uploadOtherImage" clear-function="fo.clearImage()" id="img">
+                                                </span>
+                                                <div ng-if="fo.lv.uploadOtherImage !== ' '">
+                                                    <div>
+                                                        <label class="bold">
+                                                            {{fo.lv.OtherFileName}}<a href="" class="fa fa-times padding-10-left" ng-click="fo.lv.uploadOtherImage=' '"></a>
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <a title="Upload" ng-click="fo.uploadOtherFile()" class="button button-grey">Upload</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" ng-if="fo.lv.DesignerAppointmentFileList.length>0">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <tr class="bold">
+                                                <td class="text-center">Files</td>
+                                                <td class="text-center">Download</td>
+                                            </tr>
+
+                                            <tr ng-repeat="item in fo.lv.DesignerAppointmentFileList">
+                                                <td class="text-center">
+                                                    {{item.FileNumber}}
+                                                </td>
+                                                <td class="icon">
+                                                    <a id="downloadedImg" download></a>
+                                                    <a class="link action-link" ng-click="fo.download(item,'otherFile')" title="Download">
+                                                        <i class="link-transaction-icon  fa fa-download"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-hide="fo.lv.DesignerAppointmentFileList.length > 0" class="section-height">
+                                    <div ng-show="fo.lv.DesignerAppointmentFileList === undefined || fo.lv.DesignerAppointmentFileList === null">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="note-detail">No record found.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>&nbsp;</div>
+                                <div class="col-sm-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">
+                                                <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne">
+                                                    &nbsp;&nbsp;Customer profile
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapseOne" class="panel-collapse collapse">
+                                            <div class="panel-body">
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.FirstName!==null">
+                                                    <label class="bold">Customer first name</label>
+                                                    <div class="note-detail">{{ fo.vm.FirstName}}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.MiddleName!==null">
+                                                    <label class="bold">Middle name</label>
+                                                    <div class="note-detail">{{ fo.vm.MiddleName }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.LastName!==null">
+                                                    <label class="bold">Last name</label>
+                                                    <div class="note-detail">{{ fo.vm.LastName }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.ContactNumber!==null">
+                                                    <label class="bold">Contact number</label>
+                                                    <div class="note-detail">{{ fo.vm.ContactNumber }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.EmailID!==null">
+                                                    <label class="bold">Email</label>
+                                                    <div class="note-detail">{{ fo.vm.EmailID }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.SkypeID!==null">
+                                                    <label class="bold">Skype ID</label>
+                                                    <div class="note-detail">{{ fo.vm.SkypeID }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-6 col-lg-4 col-md-4" ng-if="fo.vm.BillingAddress!==null">
+                                                    <label class="bold">Billing address</label>
+                                                    <div class="note-detail keyword">{{ fo.vm.BillingAddress }}</div>
+                                                    <div class="field-validation-error">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12">
+
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label class="section-heading">Designs</label>
+                                    </div>
+
+                                    <div class="col-sm-12" ng-if="fo.lv.DesignImageList.length>0">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                                <tr class="bold">
+                                                    <td class="text-center">Design number</td>
+                                                    <td class="text-center">Designer</td>
+                                                    <td class="text-center">Download image</td>
+                                                    <td class="text-center">Download vector file</td>
+                                                </tr>
+                                                <tr ng-repeat="item in fo.lv.DesignImageList">
+                                                    <td class="text-center">
+                                                        {{item.FileNumber}}
+                                                        <a ng-click="fo.openDetail(item)" class="link action-link">
+                                                            <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-center">{{item.DesignerName}}</td>
+                                                    <td class="icon">
+                                                        <a id="downloadedDesign" download></a>
+                                                        <a ng-click="fo.download(item,'DesignImage')" ng-if="item.ImageStatusID===1||item.ImageStatusID===3" title="Download image file" class="link action-link">
+                                                            <i class="link-transaction-icon  fa fa-download"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td class="icon">
+                                                        <a id="downloadedVector" download></a>
+                                                        <a ng-click="fo.download(item,'VectorFile')" ng-if="item.ImageStatusID===2||item.ImageStatusID===3" title="Download vector file" class="link action-link">
+                                                            <i class="link-transaction-icon  fa fa-download"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div ng-hide="fo.lv.DesignImageList.length > 0" class="section-height">
+                                        <div ng-show="fo.lv.DesignImageList != undefined && fo.lv.DesignImageList != null">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="col-sm-12 col-xs-12">
+                                                        <div class="note-detail">No record found.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 no-padding">
+                                    <div class="col-xs-12 col-sm-12">
+                                        <label class="section-heading">Customer files</label>
+                                    </div>
+                                    <div class="col-sm-12" ng-if="fo.lv.FileList.length>0">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                                <tr class="bold">
+                                                    <td class="text-center">Customer uploaded files</td>
+                                                    <td class="text-center">Download</td>
+                                                </tr>
+                                                <tr ng-repeat="item in fo.lv.FileList track by $index">
+                                                    <td class="text-center">{{item.FileNumber}}</td>
+                                                    <td class="icon">
+                                                        <a id="downloadedFile" download></a>
+                                                        <a ng-click="fo.download(item,'File')" title="Download" class="link action-link">
+                                                            <i class="link-transaction-icon  fa fa-download"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div ng-hide="fo.lv.FileList.length > 0" class="section-height">
+                                        <div ng-show="fo.lv.FileList != undefined && fo.lv.FileList != null">
+                                            <div class="row">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <div class="col-sm-12 col-xs-12">
+                                                        <div class="note-detail">No record found.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 no-padding">
+                                    <div class="col-sm-12">
+                                        <div class="col-xs-12 col-sm-12 field-validation-error-no-padding">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                            <label class="control-label">Customer's Notes</label>
+                                            <textarea autocomplete="off" disabled name="Notes" maxlength="1500" ng-model="fo.vm.Notes" />
+                                            <div class="field-validation-error">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">&nbsp;</div>
+            </div>
+        </div>
+    </form>
+</div>

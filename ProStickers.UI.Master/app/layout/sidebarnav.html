@@ -1,0 +1,58 @@
+﻿<div id='sidebar-wrapper' class='navbar-default navbar-static-side'>
+    <div class='sidebar-nav'>
+        <div id='side-menu'>
+            <ul class='nav'>
+                <li ng-repeat="item in shl.lv.AssignedModuleList" track-active>
+                  <!--  <a track-active name="parent" class="main"><i ng-class="{'menu-icon fa-fw cursor-default fa fa-{{item.Style}}' : true}"></i> <span>{{ item.Name }}</span> </a>-->
+                    <ul class="nav nav-second-level">
+                        <li ng-click="shl.menuToggle()">
+                            <a ui-sref='{{item.Url}}' ng-click="shl.initializeViewsStack($event)" track-active name="child">{{item.Name }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li track-active ng-if="shl.lv.IsMaster===true">
+                    <a track-active name="parent" class="main"><i ng-class="{'menu-icon fa-fw cursor-default fa fa-user-o' : true}"></i> <span>Master</span> </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref='CustomersList' track-active name="child">Customers</a>
+                        </li>
+                        <li>
+                            <a ui-sref='FeedbackList' track-active name="child">Feedback</a>
+                        </li>
+                        <li>
+                            <a ui-sref='OrderTrackingList' track-active name="child">Order Tracking</a>
+                        </li>
+                        <li>
+                            <a ui-sref='ColorChartList' track-active name="child">Color Chart</a>
+                        </li>
+                        <li>
+                            <a ui-sref='PredefinedSizeList' track-active name="child">Pre Defined Size</a>
+                        </li>
+                        <li>
+                            <a ui-sref='SalesReportList' track-active name="child">Sales Report</a>
+                        </li>
+                        <li>
+                            <a ui-sref='UsersList' track-active name="child">Users</a>
+                        </li>
+                    </ul>
+                </li>
+                <li track-active ng-if="shl.lv.IsMaster===false">
+                    <a track-active name="parent" class="main"><i ng-class="{'menu-icon fa-fw cursor-default fa fa-paint-brush' : true}"></i> <span>Designer</span> </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref='Appointments' track-active name="child">Customer Appointments</a>
+                        </li>
+                        <li>
+                            <a ui-sref='Tracking' track-active name="child">Order Tracking</a>
+                        </li>
+                        <li>
+                            <a ui-sref='AvailabilityTime' track-active name="child">Availability Time</a>
+                        </li>
+                    </ul>
+                </li>-->
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="overlay" ng-click="shl.menuTogglepage()"></div>

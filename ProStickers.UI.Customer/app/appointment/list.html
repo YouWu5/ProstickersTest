@@ -1,0 +1,41 @@
+﻿<div class="page-container">
+    <div class="col-sm-12 no-padding">
+        <div class="page-head-container" fix-height>
+            <div class="col-sm-12 no-padding header-flex pageHeadingLink">
+                <div class="col-xs-12 col-sm-4 name">
+                    <label class="main-heading">{{ fo.lv.title }}</label>
+                </div>
+                <div class="col-xs-12 col-sm-8 linkButton">
+                    <a title="Connect Now" ng-click="fo.contactMe()" class="button button-green">Connect Now</a>
+                    <a title="Add Calendar Appointment" ng-click="fo.addAppointment()" class="button button-green">Add Calendar Appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 no-padding">
+        <div class="page-dashboard-list" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+            <div class="row padding-5 no-padding-right">
+                <form name="AppointmentList" id="AppointmentList">
+                    <div class="col-sm-12">
+                        <div class="row row-height">
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+     
+        <div class="page-with-dashboard-list">
+            <div class="col-lg-12">
+                <div class="container-page">
+                    <div class="container-page padding-10 margin-10-top">
+                        <div ng-include="'/app/appointment/list.grid.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">&nbsp;</div>
+        </div>
+    </div>
+</div>
+
+

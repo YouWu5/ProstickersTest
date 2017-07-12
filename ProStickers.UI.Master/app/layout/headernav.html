@@ -1,0 +1,35 @@
+﻿<!--<!--headernav.html-->
+
+<div id="header-container" class="navbar-fixed-top page-scroll">
+    <div class="col-xs-12 col-sm-12 top-bar-appointments-mobile text-center">
+        <ul class="navbar-right top-bar top-bar-appointments" ng-if="shl.lv.IsMaster===false">
+            <li><a href="" ng-click="shl.overlayForm();" class="select-appointments" ng-class="{'disabled':shl.lv.appointmentCount===0}">Select one for appointment<span class="badge">{{shl.lv.appointmentCount}}</span></a></li>
+        </ul>
+    </div>
+    <div class="header-contact">
+        <div class="nav-menu">
+            <span class="navbar-toggle" ng-click="shl.menuToggle()" data-toggle="collapse" data-target=".sidebar-collapse">
+                <i class="fa fa-navicon bigger-150"></i>
+            </span>
+            <a class="logo" ui-sref="/">
+                <div class="logo-desktop"><img src="images/logo.png" /></div>
+                <div class="logo-mobile"><img src="images/logo.png" /></div>
+            </a>
+        </div>
+        <div id="sub-menu" class="text-center top-bar-appointments-desktop" ng-if="shl.lv.IsMaster===false">
+            <div class="col-xs-12 col-sm-12">
+                <ul class="navbar-right top-bar top-bar-appointments">
+                    <li><a href="" ng-click="shl.overlayForm();" class="select-appointments" ng-class="{'disabled':shl.lv.appointmentCount===0}">Select one for appointment<span class="badge">{{shl.lv.appointmentCount}}</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="sub-menu" class="text-right">
+            <div class="col-xs-12 col-sm-12">
+                <ul class="navbar-right top-bar">
+                    <li class="top-bar-hidden-xs"><label>Hello, {{shl.lv.UserName}}!</label></li>
+                    <li><a href="" title="Log Out" ng-click="shl.LogOut()">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

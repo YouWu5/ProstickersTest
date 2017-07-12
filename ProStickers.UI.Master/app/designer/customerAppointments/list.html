@@ -1,0 +1,59 @@
+﻿<div class="page-container">
+    <div class="col-sm-12 no-padding">
+        <div class="page-head-container" fix-height>
+            <div class="col-sm-12 no-padding header-flex">
+                <div class="col-sm-8">
+                    <label class="main-heading">{{ fo.lv.title }}</label>
+                </div>
+                <div class="col-sm-4">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 no-padding">
+            <div class="page-dashboard-list" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="row padding-5 no-padding-right">
+                    <form id="eventListForm" name="eventListForm" novalidate>
+                        <div class="col-sm-12">
+                            <div class="row row-height">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="col-sm-12">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-Flex">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Date</label>
+                                        <select ng-options="s.SNo as s.Name for s in fo.lv.dateList" ng-required="true" name="AppointmentDate" ng-model="fo.lv.AppointmentDate"></select>
+                                        <div class="field-validation-error"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Status</label>
+                                        <select ng-options="s.Text as s.Text for s in fo.lv.statusList" ng-required="true" name="AppointmentStatus" ng-model="fo.vm.SearchList[2].Value"></select>
+                                        <div class="field-validation-error"></div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <div class="pageButtonSub margin-10-bottom margin-20-top">
+                                            <div>
+                                                <a href="" title="Search" class="fa fa-search-page" ng-click="fo.search()"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class='section-border-bottom'></div>
+            <div class="page-with-dashboard-list">
+                <div class="col-lg-12">
+                    <div class="container-page">
+                        <div class="container-page padding-10 margin-10-top">
+                            <div ng-include="'/app/designer/customerAppointments/list.grid.html'"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+</div>

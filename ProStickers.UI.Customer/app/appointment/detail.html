@@ -1,0 +1,129 @@
+﻿<div set-footer>
+    <div class="page-head-container" fix-height>
+        <div class="col-sm-12 header-flex pageHeadingLink">
+            <div class="col-xs-12 col-sm-4 name">
+                <label class="main-heading">{{fo.lv.title}}</label>
+            </div>
+            <!--<div class="col-sm-8">
+                <label class="main-heading"> {{fo.vm.Name}}</label>
+            </div>-->
+            <div class="col-xs-12 col-sm-8 linkButton">
+                <div class="button-container">
+                    <a title="Close" ng-click="fo.cancel()" class="button button-grey">Close</a>
+                </div>
+                <div class="button-container" ng-show="fo.lv.iscancelAppointmentEnable">
+                    <a title="Cancel Appointment" ng-click="fo.cancelAppointment()" class="button button-grey">Cancel Appointment</a>
+                </div>
+                <div class="button-container" ng-show="fo.lv.isSaveEnable">
+                    <a title="Save" ng-click="fo.save()" class="button button-green">Save</a>
+                </div>
+                <div class="button-container" ng-show="fo.vm.IsBuyEnable">
+                    <a title="Buy" ng-click="fo.buy()" class="button button-green">Buy</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="AppointmentDetailForm" id="AppointmentDetailForm">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12">
+                        <div class="row">
+
+                            <div class="col-sm-12 col-Flex">
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Appointment number</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentNumber}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Appointment date</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentDate | date:'MM/dd/yyyy'}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Appointment time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentTime}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Requested date</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.RequestDate | date:'MM/dd/yyyy'}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Requested time</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.RequstTime}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Designer</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.UserName}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Status</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.AppointmentStatus}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 no-padding" ng-show="fo.lv.isCancellationReason">
+                                    <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8" ng-hide="fo.lv.status == 'Cancelled' && !fo.vm.CancellationReason">
+                                        <label class="control-label">Cancellation reason</label>
+                                        <textarea autocomplete="off" ng-disabled="fo.lv.isReasonDisable" ng-class="{'note-detail-textarea':fo.lv.isReasonDisable===true}" maxlength="1500" ng-model="fo.vm.CancellationReason" />
+                                        <div class="field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" ng-show="fo.vm.MeetingLink">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Meeting link</label>
+                                    <a title="Meeting link" href="{{fo.vm.MeetingLink}}" target="_blank">{{fo.vm.MeetingLink}}</a>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12" ng-show="fo.lv.showDesignDetail">
+                                <div class="col-sm-12 col-xs-12" ng-show="fo.vm.DesignNumber && fo.lv.uploadImage">
+                                    <label class="section-heading">Design Detail</label>
+                                </div>
+                                <div class="col-sm-12 no-padding">
+                                    <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" ng-show="fo.lv.uploadImage">
+                                        <label class="control-label">Design image</label>
+                                        <div>
+                                            <img class="ImageInForm" ng-src="{{fo.lv.uploadImage}}" />
+                                        </div>
+                                        <div class="field-validation-error col-sm-12 col-xs-12">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 no-padding">
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-show="fo.vm.DesignNumber">
+                                        <label class="control-label">Design number</label>
+                                        <label class="note-detail note-detail-form">{{fo.vm.DesignNumber}}</label>
+                                        <div class="field-validation-error">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>
+</div>
+<div class="page-footer">&nbsp;</div>

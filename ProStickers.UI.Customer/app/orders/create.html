@@ -1,0 +1,353 @@
+﻿<div set-footer>
+    <div class="page-head-container" fix-height>
+        <div class="col-sm-12 no-padding header-flex ">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 col-lmsx-8 col-lms-9 col-lm-9 col-l-9 col-xl-9 col-xxl-10">
+                <label class="main-heading">{{ fo.lv.title }}</label>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-5 col-lg-4 col-lmsx-4 col-lms-3 col-lm-3 col-l-3 col-xl-3 col-xxl-2">
+                <div class="button-container">
+                    <a title="Cancel" ng-click="fo.cancel()" class="button button-grey">Cancel</a>
+                    <span ng-show="fo.lv.isNextEnable">
+                        <a title="Next" ng-click="fo.next()" ng-class="{ 'save-disable' : (fo.isSubmitted())}" class="button button-green">Next</a>
+                    </span>
+                    <span ng-show="fo.lv.isPayEnable">
+                        <a title="Pay" ng-click="fo.pay()" ng-class="{ 'save-disable' : (fo.isSubmitted())}" class="button button-green">Pay</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form name="CreateOrderForm" id="CreateOrderForm" ng-class="{'submitForm': fo.lv.isFormInvalid}">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6" ng-show="fo.lv.uploadImage">
+                                    <label class="control-label">Design image</label>
+                                    <div>
+                                        <img class="ImageInForm" ng-src="{{fo.lv.uploadImage}}" />
+                                    </div>
+                                    <div class="field-validation-error col-sm-12 col-xs-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-show="fo.vm.DesignNumber">
+                                    <label class="control-label">Design number</label>
+                                    <label class="note-detail">{{fo.vm.DesignNumber}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Length (in inches)</label>
+                                    <input ng-required="fo.lv.isHeightRequired" autocomplete="off" class="input-number" positive-decimal-number="true" name="Length" ng-model="fo.lv.designHeight" ng-change="fo.selectedSize('height')" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CreateOrderForm.Length.$error" ng-if="(CreateOrderForm.Length.$touched || CreateOrderForm.Length.$dirty)  || fo.lv.isFormInvalid ">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Height (in inches)</label>
+                                    <input ng-required="fo.lv.isWidthRequired" autocomplete="off" name="Width" ng-model="fo.lv.designWidth" class="input-number" positive-decimal-number="true" ng-change="fo.selectedSize('width')" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CreateOrderForm.Width.$error" ng-if="(CreateOrderForm.Width.$touched || CreateOrderForm.Width.$dirty)  || fo.lv.isFormInvalid ">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Quantity</label>
+                                    <select ng-options="s.Value as s.Text for s in fo.lv.quantityList" ng-required="true" class="input-number no-padding" name="Quantity" ng-model="fo.vm.Quantity" ng-change="fo.selectedSize('Quantity')"></select>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CreateOrderForm.Quantity.$error" ng-if="(CreateOrderForm.Quantity.$touched)  || fo.lv.isFormInvalid ">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-9 col-md-9">
+                                    <label class="glyphicon-asterisk control-label">Select colors</label>
+                                    <div class="col-sm-12 no-padding select-color-container">
+                                        <ul class="list-Flex order-list-Flex">
+                                            <li class="listFlex-item" ng-repeat="item in fo.vm.ColorList">
+                                                <div class="listFlex-content checkIconCategories checkIconCategories-order" ng-click="item.IsSelected = !item.IsSelected; fo.selectedItem(item)" ng-class="{ 'select': item.IsSelected}">
+                                                    <div class="text-center categorieslabel"><i ng-class="{'icon-{{item.Name}}' : true}"></i><label><img ng-src="{{item.ImageURL}}" /></label></div>
+                                                    <div class="text-center"><label>{{item.Name}}</label></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="field-validation-error col-xs-12 col-sm-12">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 margin-20-bottom">
+                                <div class="col-xs-12 col-sm-12 col-lg-9 col-md-9" ng-if="fo.lv.selectedColorsList.length > 0">
+                                    <label class="control-label">Selected colors</label>
+                                    <div class="col-sm-12 no-padding selected-color-container">
+                                        <ul class="list-Flex order-list-Flex">
+                                            <li class="listFlex-item" ng-repeat="item in fo.lv.selectedColorsList">
+                                                <div>
+                                                    <div class="listFlex-content checkIconCategories checkIconCategories-order" ng-class="{ 'select': item.IsSelected}">
+                                                        <div class="text-center categorieslabel"><label><img src="{{item.ImageURL}}" /></label></div>
+                                                        <div class="text-center">
+                                                            <label ng-if="item.Name!==null">{{item.Name}}</label>
+                                                            <label ng-if="item.Name===null">&nbsp;</label>
+                                                        </div>
+                                                    </div>
+                                                    <label class="control-label text-center padding-10-top">Color {{$index + 1}}</label>
+                                                </div>
+
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <div class="col-xs-12 col-sm-12 radio-content">
+                                        <input type="checkbox" ng-model="fo.lv.Purchasedesign"
+                                               ng-click="fo.Purchasedesign()" />
+                                        <label class="radio-label">Purchase Design Sticker</label>
+
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label"></label>
+                                    <label class="note-detail text-right">{{fo.lv.purchaseAmount| currency}}</label>
+
+                                </div>
+                            </div>
+                            <div class="field-validation-error col-xs-12 col-sm-12">
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <div class="col-xs-12 col-sm-12 radio-content">
+                                        <input type="checkbox" ng-model="fo.vm.PurchaseVectorFile"
+                                               ng-click="fo.PurchaseVectorFile()" ng-disabled="fo.vm.PurchaseTypeID===2||fo.vm.PurchaseTypeID===3" />
+                                        <label class="radio-label">Purchase Design File</label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label"></label>
+                                    <label class="note-detail">{{"currently $30.00 flat fee"}}</label>
+                                </div>
+                            </div>
+
+                            <div class="field-validation-error col-xs-12 col-sm-12">
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-6 col-md-8">
+                                    <label class="control-label">Shipping price</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label"></label>
+                                    <label class="note-detail text-right">{{fo.lv.shippingPrice| currency}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <label class="control-label">Total</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label"></label>
+                                    <label class="note-detail text-right">{{fo.vm.Amount| currency}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+
+                                    <div class="col-xs-6 col-sm-6 col-md-5 col-lg-5 no-padding">
+                                        <label class="glyphicon-asterisk  control-label">Delivery address</label>
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-7 col-lg-7 no-padding-left text-right">
+                                        <a ng-click="fo.editAddress()" title="Edit delivery address" class="link">
+                                            Edit
+                                        </a>
+                                    </div>
+                                    <textarea autocomplete="off" ng-disabled="true" name="description" maxlength="1500" ng-model="fo.lv.address" ng-required="true" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CreateOrderForm.description.$error" ng-if="CreateOrderForm.description.$dirty||CreateOrderForm.description.$touched|| fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="col-sm-12" ng-show="fo.lv.showAddressDetails">
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Country</label>
+                                        <select ng-options="s.ID as s.Name for s in fo.lv.countryList" ng-required="fo.lv.isRequired" name="country" ng-model="fo.vm.CountryID" ng-change="fo.getStateList(fo.vm.CountryID)"><option value="">Select</option></select>
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.country.$error" ng-if="(CreateOrderForm.country.$touched)  || fo.lv.isAddressFormInvalid ">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Address line 1</label>
+                                        <input type="text" autocomplete="off" name="Address1" class="text-capitalize" maxlength="60" ng-required="fo.lv.isRequired" ng-model="fo.vm.Address1" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.Address1.$error" ng-if="CreateOrderForm.Address1.$dirty||CreateOrderForm.Address1.$touched|| fo.lv.isAddressFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+                                        <label class="control-label">Address line 2</label>
+                                        <input type="text" autocomplete="off" name="Address2" class="text-capitalize" maxlength="60" ng-model="fo.vm.Address2" />
+                                        <div class="field-validation-error">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">City</label>
+                                        <input type="text" autocomplete="off" name="city" class="text-capitalize" maxlength="60" ng-required="fo.lv.isRequired" ng-model="fo.vm.City" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.city.$error" ng-if="CreateOrderForm.city.$dirty||CreateOrderForm.city.$touched|| fo.lv.isAddressFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-hide="fo.lv.stateNameTextBox">
+                                        <label class="glyphicon-asterisk control-label">State</label>
+                                        <select ng-required="fo.lv.isRequired" name="state" ng-options="s.Value as s.Text for s in fo.lv.stateList" ng-model="fo.vm.StateID" ng-change="fo.selectedState()"><option value="">Select</option></select>
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.state.$error" ng-if="CreateOrderForm.state.$touched || fo.lv.isAddressFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-show="fo.lv.stateNameTextBox">
+                                        <label class="glyphicon-asterisk control-label">State</label>
+                                        <input type="text" ng-model="fo.lv.StateName" name="state12" ng-required="fo.lv.isRequired" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.state12.$error" ng-if="CreateOrderForm.state12.$touched || fo.lv.isAddressFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-12 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Zip/Postal</label>
+                                        <input type="text" autocomplete="off" name="postal" class="text-capitalize" ng-minlength="fo.lv.minLength" maxlength="{{fo.lv.maxLength}}" ng-required="fo.lv.isRequired" ng-model="fo.vm.PostalCode" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.postal.$error" ng-if="CreateOrderForm.postal.$dirty||CreateOrderForm.postal.$touched|| fo.lv.isAddressFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                                <span ng-message="pattern">Invalid</span>
+                                                <span ng-message="minlength">Minimum {{fo.lv.minLength}} digit required.</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <div class="pageButtonSub margin-10-bottom margin-20-top">
+                                            <div>
+                                                <a href="" title="Add delivery address" class="fa fa-check-page" ng-click="fo.addAddress();"></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-12 no-padding" ng-show="fo.lv.isPaymentDetailEnable">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <label class="section-heading">Payment</label>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Card Holder Name</label>
+                                        <input type="text" autocomplete="off" name="cardHolderName" class="text-capitalize" maxlength="60" ng-required="true" ng-model="fo.vm.NameOnCard" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.cardHolderName.$error" ng-if="CreateOrderForm.cardHolderName.$dirty||CreateOrderForm.cardHolderName.$touched|| fo.lv.isFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Card Number</label>
+                                        <input type="text" autocomplete="off" name="cardNo" class="text-capitalize" maxlength="20" ng-required="true" ng-model="fo.vm.CardNo" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.cardNo.$error" ng-if="CreateOrderForm.cardNo.$dirty||CreateOrderForm.cardNo.$touched|| fo.lv.isFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">Expires on</label>
+
+                                        <div class="col-sm-6 col-xs-6 no-padding">
+                                            <select ng-options="s.Value as s.Text for s in fo.lv.monthList" ng-required="true" name="month" ng-model="fo.vm.ExpiryMonth"><option value="">Select</option></select>
+                                            <div class="field-validation-error">
+                                                <div ng-messages="CreateOrderForm.month.$error" ng-if="(CreateOrderForm.month.$touched || CreateOrderForm.month.$dirty)  || fo.lv.isInvalid ">
+                                                    <span ng-message="required">Required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-xs-6">
+                                            <select ng-options="s as s for s in fo.lv.yearList" ng-required="true" name="year" ng-model="fo.vm.ExpiryYear"><option value="">Select</option></select>
+                                            <div class="field-validation-error">
+                                                <div ng-messages="CreateOrderForm.year.$error" ng-if="(CreateOrderForm.year.$touched || CreateOrderForm.year.$dirty)  || fo.lv.isFormInvalid ">
+                                                    <span ng-message="required">Required</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                        <label class="glyphicon-asterisk control-label">CVV</label>
+                                        <input type="text" autocomplete="off" positive-decimal-number="true" name="CVV" class="text-capitalize" maxlength="4" ng-required="true" ng-model="fo.vm.CVV" />
+                                        <div class="field-validation-error">
+                                            <div ng-messages="CreateOrderForm.CVV.$error" ng-if="CreateOrderForm.CVV.$dirty||CreateOrderForm.CVV.$touched|| fo.lv.isFormInvalid">
+                                                <span ng-message="required">Required</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--<div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>-->
+</div>
+<div class="page-footer">&nbsp;</div>

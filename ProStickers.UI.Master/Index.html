@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8" />
+    <title>Pro-stickers</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="google" content="notranslate" />
+    <base href="/">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link href="lib/angular/angular-csp.css" rel="stylesheet" />
+    <link href="lib/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
+    <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="css/animation.css" rel="stylesheet" />
+    <link href="css/fontello.css" rel="stylesheet" />
+    <link href="css/fontello-codes.css" rel="stylesheet" />
+    <link href="css/fontello-embedded.css" rel="stylesheet" />
+    <link href="css/fontello-ie7.css" rel="stylesheet" />
+    <link href="css/fontello-ie7-codes.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet" />
+
+    <link href="css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <div spinner name="layoutSpinner" ng-cloak='' class="loading-bar">
+        <span class="fa fa-spinner fa-spin" size="large"></span>
+    </div>
+    <div spinner name="pageContainerSpinner" ng-cloak='' class="loading-bar">
+        <span class="fa fa-spinner fa-spin" size="large"></span>
+    </div>
+
+    <div ng-app="app.layout" ng-controller="Shell as shl">
+
+        <div ng-if="shl.vm.isRequiredLogin == false">
+            <div ng-include="'Login.html'"></div>
+        </div>
+        <div ng-if="shl.vm.isRequiredLogin == true">
+            <div ng-include="'/app/layout/shell.html'"></div>
+        </div>
+    </div>
+
+    <div><a href="#" class="scrollToTop"><i class="fa fa-angle-up"></i></a></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-sanitize.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular-messages.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.2/angular-ui-router.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-local-storage/0.5.0/angular-local-storage.min.js"></script>
+    <script src="lib/ng-google-signin/dist/ng-google-signin.min.js"></script>
+    <script src="lib/angular-spinners/dist/angular-spinners.min.js"></script>
+    <script src="lib/ngBootbox/ngBootbox.js"></script>
+    <script src="lib/angular-bowser/src/angular-bowser.js"></script>
+
+    <script src="app/app.module.js"></script>
+
+    <script src="app/layout/layout.module.js"></script>
+    <script src="app/layout/shell.js"></script>
+    <script src="app/layout/shell.factory.js"></script>
+
+    <script src="app/home/home.module.js"></script>
+    <script src="app/home/home.route.js"></script>
+    <script src="app/home/homeController.js"></script>
+
+    <script src="app/blocks/blocks.module.js"></script>
+    <script src="app/blocks/directive/typeaheadviewvalue.directive.js"></script>
+    <script src="app/blocks/directive/active.directive.js"></script>
+    <script src="app/blocks/directive/pagination.directive.js"></script>
+    <script src="app/blocks/directive/fileRead.directive.js"></script>
+    <script src="app/blocks/directive/dateGreaterThan.directive.js"></script>
+    <script src="app/blocks/directive/datepickerPattern.directive.js"></script>
+    <script src="app/blocks/directive/dateSmallerThan.directive.js"></script>
+    <script src="app/blocks/directive/datetimepickerNeutralTimezone.directive.js"></script>
+    <script src="app/blocks/directive/positiveNumber.directive.js"></script>
+    <script src="app/blocks/directive/fixHeight.js"></script>
+    <script src="app/blocks/directive/capitalizeFirst.directive.js"></script>
+    <script src="app/blocks/directive/datepickerNeutralTimezone.directive.js"></script>
+    <script src="app/blocks/directive/allTextLowerCase.directive.js"></script>
+    <script src="app/blocks/directive/scrollOnValidation.directive.js"></script>
+    <script src="app/blocks/directive/positiveDecimalNumber.directive.js"></script>
+    <script src="app/blocks/directive/positiveQuantity.js"></script>
+
+    <script src="app/core/core.module.js"></script>
+    <script src="app/core/stackView.js"></script>
+    <script src="app/core/message.js"></script>
+    <script src="app/core/helper.js"></script>
+    <script src="app/layout/messages.js"></script>
+    <script src="app/layout/messages.factory.js"></script>
+    <script src="app/home/masterHome.js"></script>
+    <script src="app/home/designerHome.js"></script>
+
+    <script src="app/designer/availabilityTime/availabilityTime.module.js"></script>
+    <script src="app/designer/availabilityTime/availabilityTime.route.js"></script>
+    <script src="app/designer/availabilityTime/availability.js"></script>
+    <script src="app/designer/availabilityTime/availability.factory.js"></script>
+
+    <script src="app/designer/customerAppointments/appointment.module.js"></script>
+    <script src="app/designer/customerAppointments/appointment.route.js"></script>
+    <script src="app/designer/customerAppointments/create.js"></script>
+    <script src="app/designer/customerAppointments/create.factory.js"></script>
+    <script src="app/designer/customerAppointments/detail.js"></script>
+    <script src="app/designer/customerAppointments/detail.factory.js"></script>
+    <script src="app/designer/customerAppointments/list.js"></script>
+    <script src="app/designer/customerAppointments/list.factory.js"></script>
+    <script src="app/designer/customerAppointments/designDetail.js"></script>
+    <script src="app/designer/customerAppointments/designDetail.factory.js"></script>
+
+    <script src="app/designer/orderTracking/orderTracking.module.js"></script>
+    <script src="app/designer/orderTracking/orderTracking.route.js"></script>
+    <script src="app/designer/orderTracking/list.js"></script>
+    <script src="app/designer/orderTracking/list.factory.js"></script>
+    <script src="app/designer/orderTracking/detail.js"></script>
+    <script src="app/designer/orderTracking/detail.factory.js"></script>
+
+    <script src="app/master/colorChart/colorChart.module.js"></script>
+    <script src="app/master/colorChart/colorChart.route.js"></script>
+    <script src="app/master/colorChart/create.js"></script>
+    <script src="app/master/colorChart/create.factory.js"></script>
+    <script src="app/master/colorChart/list.js"></script>
+    <script src="app/master/colorChart/list.factory.js"></script>
+    <script src="app/master/colorChart/update.js"></script>
+    <script src="app/master/colorChart/update.factory.js"></script>
+
+    <script src="app/master/customers/customers.module.js"></script>
+    <script src="app/master/customers/customers.route.js"></script>
+    <script src="app/master/customers/detail.js"></script>
+    <script src="app/master/customers/detail.factory.js"></script>
+    <script src="app/master/customers/list.js"></script>
+    <script src="app/master/customers/list.factory.js"></script>
+    <script src="app/master/customers/designDetail.js"></script>
+    <script src="app/master/customers/designDetail.factory.js"></script>
+
+    <script src="app/master/feedback/feedback.module.js"></script>
+    <script src="app/master/feedback/feedback.route.js"></script>
+    <script src="app/master/feedback/detail.js"></script>
+    <script src="app/master/feedback/detail.factory.js"></script>
+    <script src="app/master/feedback/list.js"></script>
+    <script src="app/master/feedback/list.factory.js"></script>
+
+    <script src="app/master/orderTracking/orderTracking.module.js"></script>
+    <script src="app/master/orderTracking/orderTracking.route.js"></script>
+    <script src="app/master/orderTracking/list.js"></script>
+    <script src="app/master/orderTracking/list.factory.js"></script>
+    <script src="app/master/orderTracking/update.js"></script>
+    <script src="app/master/orderTracking/update.factory.js"></script>
+
+    <script src="app/master/predefinedSize/predefinedSize.module.js"></script>
+    <script src="app/master/predefinedSize/predefinedSize.route.js"></script>
+    <script src="app/master/predefinedSize/list.js"></script>
+    <script src="app/master/predefinedSize/list.factory.js"></script>
+
+    <script src="app/master/salesReport/report.module.js"></script>
+    <script src="app/master/salesReport/report.route.js"></script>
+    <script src="app/master/salesReport/list.js"></script>
+    <script src="app/master/salesReport/list.factory.js"></script>
+
+    <script src="app/master/users/users.module.js"></script>
+    <script src="app/master/users/users.route.js"></script>
+    <script src="app/master/users/create.js"></script>
+    <script src="app/master/users/create.factory.js"></script>
+    <script src="app/master/users/list.js"></script>
+    <script src="app/master/users/list.factory.js"></script>
+    <script src="app/master/users/update.js"></script>
+    <script src="app/master/users/update.factory.js"></script>
+
+</body>
+</html>

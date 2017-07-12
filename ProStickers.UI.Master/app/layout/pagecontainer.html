@@ -1,0 +1,29 @@
+﻿<!--pagecontainer.html-->
+<div id="page-wrapper">
+    <div class="mainContainer">
+        <div class="appContainer">
+            <div class="appContent">
+                <div ui-view></div>
+                <div ng-include="'/app/layout/messages.html'"></div>
+            </div>
+        </div>
+        <div id="userMessage" class="noMsg"></div>
+        <div class="col-xs-12 col-sm-12 footer-text" ng-class="{'footer-text-fix-screen':$state.current.name ==='/'}">
+            <a href="app/home/serviceTerms.html" target="_blank">Terms of Service</a>
+            <label>l</label>
+            <a href="app/home/privacyPolicy.html" target="_blank">Privacy Policy</a>
+        </div>
+    </div>
+</div>
+
+<div ng-if="shl.lv.form === true">
+    <div class="overlay-form-modal fade in">
+        <div class="overlay-form-content">
+            <div class="overlay-form-body">
+                <div ng-include="'/app/designer/customerAppointments/create.html'"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay-form-backdrop fade in"></div>
+</div>

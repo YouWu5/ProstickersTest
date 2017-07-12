@@ -1,0 +1,82 @@
+﻿<div set-footer>
+    <div class="page-head-container" fix-height>
+        <div class="col-sm-12 no-padding header-flex">
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 col-lmsx-8 col-lms-9 col-lm-9 col-l-9 col-xl-9 col-xxl-10">
+                <label class="main-heading">{{ fo.lv.title }}</label>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-5 col-lg-4 col-lmsx-4 col-lms-3 col-lm-3 col-l-3 col-xl-3 col-xxl-2">
+                <div class="button-container">
+                    <a title="Save" ng-click="fo.Save()" class="button button-green">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form name="PredefinedSizeListForm" id="PredefinedSizeListForm" scroll-on-validation="">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Size in inch</label>
+                                    <label class="note-detail">{{fo.vm.Size}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">One color price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <label>&nbsp;$&nbsp;</label>
+                                        </div>
+                                        <input type="text" class="form-control text-right" autocomplete="off" name="oneColorPrice" maxlength="60" ng-required="true" positive-decimal-number="true" ng-model="fo.vm.OneColorPrice" />
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="PredefinedSizeListForm.oneColorPrice.$error" ng-if="PredefinedSizeListForm.oneColorPrice.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Two color price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <label>&nbsp;$&nbsp;</label>
+                                        </div>
+                                        <input type="text" class="form-control text-right" autocomplete="off" name="twoColorPrice" maxlength="60" ng-required="true" positive-decimal-number="true" ng-model="fo.vm.TwoColorPrice" />
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="PredefinedSizeListForm.twoColorPrice.$error" ng-if="PredefinedSizeListForm.twoColorPrice.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Three or more color price</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">
+                                            <label>&nbsp;$&nbsp;</label>
+                                        </div>
+                                        <input type="text" class="form-control text-right" autocomplete="off" name="threeColorPrice" maxlength="60" ng-required="true" positive-decimal-number="true" ng-model="fo.vm.MoreColorPrice" />
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="PredefinedSizeListForm.threeColorPrice.$error" ng-if="PredefinedSizeListForm.threeColorPrice.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>
+</div>
+<div class="page-footer">&nbsp;</div>

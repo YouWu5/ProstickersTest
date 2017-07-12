@@ -1,0 +1,34 @@
+﻿<div id='sidebar-wrapper' class='navbar-default navbar-static-side'>
+    <div class='sidebar-nav'>
+        <div id='side-menu'>
+            <ul class='nav'>
+                <li ng-repeat="item in shl.lv.AssignedModuleList" track-active ">
+                    <!-- <a  track-active name="parent" class="main"><i ng-class="{'menu-icon fa-fw cursor-default fa fa-{{item.Style}}' : true}"></i> <span>{{ item.Name }}</span> </a>-->
+                    <ul class="nav nav-second-level">
+                        <li ng-click="shl.menuToggle()">
+                            <a ui-sref='{{item.Url}}' ng-click="shl.initializeViewsStack($event)" track-active name="child">{{item.Name }}</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--<li track-active>
+                    <a ui-sref="Customers" track-active name="parent" class="main"><i ng-class="{'menu-icon fa-fw cursor-default fa fa-{{item.Style}}' : true}"></i> <span>Customer</span> </a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a ui-sref='AppointmentList' track-active name="child">Appointment</a>
+                        </li>
+                        <li>
+                            <a ui-sref='OrdersList' track-active name="child">Orders</a>
+                        </li>
+                        <li>
+                            <a ui-sref='DesignsList' track-active name="child">Designs</a>
+                        </li>
+                        <li>
+                            <a ui-sref='FilesList' track-active name="child">Files</a>
+                        </li>
+                    </ul>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="overlay" ng-click="shl.menuTogglepage()"></div>

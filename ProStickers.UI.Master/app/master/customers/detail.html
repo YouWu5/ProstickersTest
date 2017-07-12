@@ -1,0 +1,322 @@
+﻿<div set-footer>
+    <div class="page-head-container">
+        <div class="col-sm-12 no-padding header-flex" fix-height>
+            <div class="col-xs-12 col-sm-12 col-md-7 col-lg-8 col-lmsx-8 col-lms-9 col-lm-9 col-l-9 col-xl-9 col-xxl-10">
+                <label class="main-heading">{{ fo.lv.title }}</label>
+            </div>
+            <div class="col-xs-12  col-sm-12 col-md-5 col-lg-4 col-lmsx-4 col-lms-3 col-lm-3 col-l-3 col-xl-3 col-xxl-2">
+                <div class="button-container">
+                    <a title="Cancel" ng-click="fo.Cancel()" class="button button-grey">Cancel</a>
+                    <a title="Delete" ng-click="fo.delete()" class="button button-red">Delete</a>
+                    <a title="Save" ng-click="fo.Save()" class="button button-green">Save</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form name="CustomerDetailForm" id="CustomerDetailForm" scroll-on-validation="">
+        <div class="container-page">
+            <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+                <div class="col-lg-12 section-height">
+                    <div class="col-sm-12 col-Flex">
+                        <div class="row">
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">First name</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="firstName" maxlength="60" ng-required="true" ng-model="fo.vm.FirstName" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.firstName.$error" ng-if="CustomerDetailForm.firstName.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Middle name</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="middleName" maxlength="60" ng-model="fo.vm.MiddleName" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Last name</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="lastName" maxlength="60" ng-required="true" ng-model="fo.vm.LastName" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.lastName.$error" ng-if="CustomerDetailForm.lastName.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Contact number</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="contactNumber" maxlength="15" ng-required="true" ng-model="fo.vm.ContactNo" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.contactNumber.$error" ng-if="CustomerDetailForm.contactNumber.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="glyphicon-asterisk control-label">Email</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="email" maxlength="60" ng-required="true" ng-model="fo.vm.EmailID" ng-pattern="/^[_a-z_A-Z0-9]+(\.[_a-z_A-Z0-9]+)*@[a-z_A-Z0-9-]+(\.[a-z_A-Z0-9-]+)*(\.[a-z_A-Z]{2,5})$/" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.email.$error" ng-if="CustomerDetailForm.email.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                            <span ng-message="pattern">Invalid</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Skype id</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="skypeid" maxlength="60" ng-model="fo.vm.SkypeID" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Billing Address</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-Flex">
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Country</label>
+                                    <select name="country" ng-options="s.ID as s.Name for s in fo.lv.countryList" ng-required="fo.lv.isRequired" ng-model="fo.vm.CountryID" ng-change="fo.getStateList(fo.vm.CountryID)">
+                                        <option value="">Select</option>
+                                    </select>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.country.$error" ng-if="CustomerDetailForm.country.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Address line 1</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="addressLine1" maxlength="60" ng-required="fo.lv.isRequired" ng-model="fo.vm.Address1" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.addressLine1.$error" ng-if="CustomerDetailForm.addressLine1.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Address line 2</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="addressLine2" maxlength="60" ng-model="fo.vm.Address2" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">City</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="city" maxlength="60" ng-required="fo.lv.isRequired" ng-model="fo.vm.City" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.city.$error" ng-if="CustomerDetailForm.city.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="!fo.lv.isStateNameDropDown" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">State</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="State" maxlength="60" ng-required="fo.lv.isRequired" ng-model="fo.lv.StateName" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.State.$error" ng-if="CustomerDetailForm.State.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-show="fo.lv.isStateNameDropDown" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">State</label>
+                                    <select name="state" ng-options="s.Value as s.Text for s in fo.lv.stateList" ng-required="fo.lv.isRequired" ng-model="fo.vm.StateID" ng-change="fo.selectedState()"><option value="">Select</option></select>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.state.$error" ng-if="CustomerDetailForm.state.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                    <label class="control-label">Zip code</label>
+                                    <input id="postalCode" type="text" class="form-control" autocomplete="off" name="zipcode" ng-required="fo.lv.isRequired" maxlength="{{fo.lv.maxLength}}" ng-minlength="fo.lv.minLength" ng-model="fo.vm.PostalCode" ng-pattern="fo.lv.postalCodePattern" />
+                                    <div class="field-validation-error">
+                                        <div ng-messages="CustomerDetailForm.zipcode.$error" ng-if="CustomerDetailForm.zipcode.$touched || fo.lv.isAddressFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                            <span ng-message="pattern">Invalid</span>
+                                            <span ng-message="minlength">Minimum {{fo.lv.minLength}} digit required.</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <label class="control-label">Notes</label>
+                                    <textarea autocomplete="off" name="descriptions" maxlength="1500" ng-model="fo.vm.FileNote" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Customer files</label>
+                                </div>
+                                <div ng-show="fo.vm.CustomerFileList !== null && fo.vm.CustomerFileList.length > 0" class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <tr>
+                                                <th>Customer uploaded files</th>
+                                                <th>Download</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            <tr ng-repeat="item in fo.vm.CustomerFileList track by $index">
+                                                <td class="text-center">
+                                                    {{item.FileNumber}}
+                                                </td>
+                                                <td class="icon">
+                                                    <a id="downloadedImg1"></a>
+                                                    <a ng-click="fo.downloadFile(item,'customerFile')" title="Download" class="link action-link">
+                                                        <i class="link-transaction-icon  fa fa-download"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon">
+                                                    <a title="Delete" ng-click="fo.deleteFile('customerFile',item.FileNumber, $index,fo.vm.CustomerFileList,fo.vm.RemoveCustomerFileList)" title="Delete" class="link action-link">
+                                                        <i class="link-transaction-icon  fa fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-show="fo.vm.CustomerFileList === null || fo.vm.CustomerFileList.length <= 0" class="section-height">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <div class="note-detail">No file found.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-xs-12 col-sm-12">
+                                    <label class="section-heading">Customer designs</label>
+                                </div>
+                                <div ng-show="fo.vm.CustomerDesignList != null && fo.vm.CustomerDesignList.length > 0" class="col-sm-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                            <tr>
+                                                <th>Design number</th>
+                                                <th>Designer</th>
+                                                <th>Download image</th>
+                                                <th>Download vector file</th>
+                                                <th>Delete</th>
+                                            </tr>
+                                            <tr ng-repeat="item in fo.vm.CustomerDesignList track by $index">
+                                                <td class="link-transaction">
+                                                    {{item.DesignNumber}}
+                                                    <a href="" class="" ng-click="fo.OpenDesignDetail(item.DesignNumber,item.UserID)">
+                                                        <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="text-center">{{item.UserName}}</td>
+                                                <td class="icon">
+                                                    <a id="downloadedImg2"></a>
+                                                    <a ng-click="fo.downloadFile(item,'designImage')" title="Download image" class="link action-link">
+                                                        <i class="link-transaction-icon  fa fa-download"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon">
+                                                    <a id="downloadedImg3"></a>
+                                                    <a ng-click="fo.downloadFile(item,'vectorFile')" title="Download vector file" class="link action-link">
+                                                        <i class="link-transaction-icon  fa fa-download"></i>
+                                                    </a>
+                                                </td>
+                                                <td class="icon">
+                                                    <a title="Delete" ng-if="item.OrderStatusID !== 1" ng-click="fo.deleteFile('designFile',item.DesignNumber,$index,fo.vm.CustomerDesignList,fo.vm.RemoveCustomerDesignList)" title="Delete" class="link action-link">
+                                                        <i class="link-transaction-icon  fa fa-trash"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div ng-show="fo.vm.CustomerDesignList === null || fo.vm.CustomerDesignList.length <= 0" class="section-height row">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <div class="note-detail">No design found.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>&nbsp;</div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-xs-12">
+                                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6">
+                                                <label class="section-heading">Other files not visible to customer</label>
+                                            </div>
+                                            <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6 text-right">
+                                                <span class="file-input button button-green import-button btn-file" title="Browse" ng-if="fo.lv.uploadImage === ' '">
+                                                    Other files <input type="file" title="Browse other files" ng-model="fo.lv.novalue" class="filestyle" accept="image/*" file-read-other-file="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
+                                                </span>
+                                                <div ng-if="fo.lv.uploadImage !== ' '">
+                                                    <div>
+                                                        <label class="bold">
+                                                            {{fo.lv.fileName}}<a href="" class="fa fa-times padding-10-left" ng-click="fo.lv.uploadImage=' '"></a>
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <a title="Upload" ng-click="fo.uploadOtherFile()" class="button button-grey">Upload</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>&nbsp;</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div ng-show="fo.vm.UserFileList != null && fo.vm.UserFileList.length > 0" class="col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                        <tr>
+                                            <th>Files</th>
+                                            <th>Download</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                        <tr ng-repeat="item in fo.vm.UserFileList track by $index">
+                                            <td class="text-center">
+                                                {{item.FileNumber}}
+                                            </td>
+                                            <td class="icon">
+                                                <a id="downloadedImg4"></a>
+                                                <a ng-click="fo.downloadFile(item,'userFile')" title="Download" class="link action-link">
+                                                    <i class="link-transaction-icon  fa fa-download"></i>
+                                                </a>
+                                            </td>
+                                            <td class="icon">
+                                                <a title="Delete" ng-click="fo.deleteFile('userFile',item.FileNumber,$index,fo.vm.UserFileList,fo.vm.RemoveUserFileList)" title="Delete" class="link action-link">
+                                                    <i class="link-transaction-icon  fa fa-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div ng-show="fo.vm.UserFileList === null || fo.vm.UserFileList.length <= 0" class="section-height">
+                                <div class="col-sm-12 col-xs-12">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <div class="note-detail">No record found.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>&nbsp;</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!--<div class="row col-sm-12 col-xs-12">
+    <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+</div>-->
+<div class="page-footer">&nbsp;</div>

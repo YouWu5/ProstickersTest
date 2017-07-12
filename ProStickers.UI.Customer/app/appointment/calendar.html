@@ -1,0 +1,107 @@
+﻿<div class="page-head-container" fix-height>
+    <div class="col-sm-12 no-padding header-flex pageHeadingLink">
+        <div class="col-xs-12 col-sm-6 name">
+            <label class="main-heading">{{fo.lv.title}}</label>
+        </div>
+        <div class="col-xs-12 col-sm-6 linkButton">
+            <div class="button-container">
+                <a title="Close" ng-click="fo.cancel()" class="button button-grey">Close</a>
+            </div>
+            <div class="button-container">
+                <a title="Save" ng-click="fo.save()" class="button button-green">Save</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form name="CalendarForm" id="CalendarForm" set-footer>
+    <div class="container-page">
+        <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+            <div class="col-lg-12">
+                <div class="col-sm-12">
+                    <div class="col-sm-12 no-padding">
+                        <div class="col-xs-12 col-sm-12">
+                            <label class="control-label">Calendar</label>
+                        </div>
+                    </div>
+                    <div class="row section-height">
+
+                        <div class="col-sm-12 no-padding">
+                            <div class="col-sm-12 no-padding">
+                                <div class="col-xs-12 col-lg-12 col-sm-12 no-padding">
+                                    <div class="col-sm-12">
+                                        <ul class="list-Flex">
+                                            <li class="listFlex-item" ng-repeat="item in fo.lv.daysList">
+                                                <div class="listFlex-content checkIconCategories" ng-click="fo.select($index); fo.selectDate(item)" ng-class="{ 'select': $index === fo.lv.selected}">
+                                                    <div class="text-center categorieslabel"><i ng-class="{'icon-{{item.Name}}' : true}"></i><label>{{item.Name}}</label></div>
+                                                    <div><i></i><label>{{item.Date |date}}</label></div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 height-15"></div>
+                        </div>
+
+                        <div class="col-sm-12 col-Flex">
+
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <label class="glyphicon-asterisk control-label">Time slot</label>
+                                <select ng-options="s.Value as s.Text for s in fo.lv.timeSlotList" ng-required="true" name="state" ng-model="fo.vm.TimeSlotID" ng-change="fo.selectTimeSlot(fo.vm.TimeSlotID)"><option value="">Select</option></select>
+                                <div class="field-validation-error">
+                                    <div ng-messages="CalendarForm.state.$error" ng-if="(CalendarForm.state.$touched || CalendarForm.state.$dirty)  || fo.lv.isFormInvalid ">
+                                        <span ng-message="required">Required</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <label class="control-label">Do you have a preferred designer</label>
+                                <select ng-options="item for item in fo.lv.preferredDesignerList" name="state" ng-model="fo.lv.designer"><option>Select</option></select>
+                                <div class="field-validation-error">
+                                </div>
+                            </div>-->
+
+                            <!--<div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                <div class="pageButtonSub margin-10-bottom margin-20-top">
+                                    <div>
+                                        <a href="" title="Search" class="fa fa-search-page" ng-click="fo.search()"></a>
+                                    </div>
+                                </div>
+                            </div>-->
+
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-show="fo.lv.showMoreDesigner == false">
+                                <label class="control-label">Designer</label>
+                                <label class="note-detail">{{fo.lv.designerName}}</label>
+                                <div class="field-validation-error">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4" ng-show="fo.lv.showMoreDesigner == true">
+                                <label class="glyphicon-asterisk control-label">Designer</label>
+                                <select ng-options="s.Value as s.Text for s in fo.lv.designerList" name="state" ng-model="fo.vm.UserID" ng-change="fo.setUserName(fo.vm.UserID)"><option value="">Select</option></select>
+                                <div class="field-validation-error">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-xs-12">
+                            <a ng-click="fo.moreDesigner(fo.vm.TimeSlotID)" class="link action-link">More designers</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row col-sm-12 col-xs-12">
+        <div style="padding-bottom:{{fo.lv.setFooterPaddingForm}}"></div>
+    </div>
+</form>
+<div class="page-footer">&nbsp;</div>
+
+
+
+

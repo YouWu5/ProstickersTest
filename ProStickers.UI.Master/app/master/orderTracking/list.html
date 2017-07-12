@@ -1,0 +1,111 @@
+﻿<div class="page-container">
+    <div class="col-sm-12 no-padding">
+        <div class="page-head-container" fix-height>
+            <div class="col-sm-12 no-padding header-flex">
+                <div class="col-sm-8">
+                    <label class="main-heading">{{ fo.lv.title }}</label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="button-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 no-padding">
+        <div class="page-dashboard-list" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
+            <div class="row padding-5 no-padding-right">
+                <form id="orderListForm" name="orderListForm" novalidate scroll-on-validation="">
+                    <div class="col-sm-12">
+                        <div class="row row-height">
+                            <div class="col-sm-12 col-xs-12">
+                                <div class="col-sm-12">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-Flex">
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="glyphicon-asterisk control-label">Date from</label>
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="datepicker" uib-datepicker-popup="MM/dd/yyyy" ng-required="true"
+                                               datepicker-append-to-body="true" show-button-bar="false" name="StartDate"
+                                               ng-model="fo.lv.StartDate" datepicker-options="fo.lv.startDateOptions"
+                                               maxlength="10" max-date="fo.lv.EndDate" ng-change="fo.setDate(fo.lv.StartDate, fo.lv.EndDate, 'startDate')"
+                                               is-open="fo.openedStart" close-text="Close" />
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" ng-click="fo.open($event,'openedStart')">
+                                            </i>
+                                        </div>
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="orderListForm.StartDate.$error" ng-if="orderListForm.StartDate.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="datepickerPattern">Invalid</span>
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="glyphicon-asterisk control-label">Date to</label>
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="datepicker" uib-datepicker-popup="MM/dd/yyyy"
+                                               ng-required="true" min-date="fo.lv.StartDate" max-date="fo.lv.maxDate" name="EndDate"
+                                               datepicker-append-to-body="true" maxlength="10" show-button-bar="false"
+                                               ng-model="fo.lv.EndDate" datepicker-options="fo.lv.endDateOptions"
+                                               ng-change="fo.setDate( fo.lv.StartDate, fo.lv.EndDate, 'endDate')"
+                                               is-open="fo.openedEnd" close-text="Close" />
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" ng-click="fo.open($event,'openedEnd')">
+                                            </i>
+                                        </div>
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="orderListForm.EndDate.$error" ng-if="orderListForm.EndDate.$touched || fo.lv.isFormInvalid">
+                                            <span ng-message="datepickerPattern">Invalid</span>
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="glyphicon-asterisk control-label">Status</label>
+                                    <select ng-options="s.Value as s.Text for s in fo.lv.statusList" name="orderStatus" ng-model="fo.lv.StatusID"></select>
+                                    <div class="field-validation-error"></div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <label class="control-label">Customer</label>
+                                    <input type="text" class="typeahead form-control" ng-blur="fo.validateCustomer()" name="customer"
+                                           typeahead_on_select="fo.setIdOfCustomer($item)" ng-model="fo.lv.Customer"
+                                           uib-typeahead="c.Text for c in fo.getCustomerList($viewValue)"
+                                           typeahead_editable="true" typeahead_loading="loadinglocations" autocomplete="off" />
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
+                                    <div class="pageButtonSub margin-10-bottom margin-20-top">
+                                        <div>
+                                            <a href="" title="Search" class="fa fa-search-page" ng-click="fo.search()"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class='section-border-bottom'></div>
+        <div class="page-with-dashboard-list">
+            <div class="col-lg-12">
+                <div class="container-page">
+                    <div class="container-page padding-10 margin-10-top">
+                        <div ng-include="'/app/master/orderTracking/list.grid.html'"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-footer">&nbsp;</div>
+        </div>
+    </div>
+</div>

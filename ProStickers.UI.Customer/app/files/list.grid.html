@@ -1,0 +1,84 @@
+﻿<div set-footer>
+    <div>
+        <div class="col-sm-12 no-padding section-height">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-6 col-lg-6 col-md-6 no-padding">
+                            <div class="col-sm-6 col-xs-6  no-padding">
+                                <span class="file-input button button-green import-button btn-file" title="Browse" ng-show="fo.lv.uploadImage == ' '">
+                                    Browse <input type="file" title="Browse" onclick="this.value = null;" ng-model="fo.lv.novalue3" class="filestyle" accept="image/*" file-read="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
+                                </span>
+                                <a title="upload" ng-click="fo.uploadfile()" class="button button-green" ng-show="fo.lv.uploadImage !== ' '">Upload</a>
+                                <div ng-if="fo.lv.uploadImage !== ' '">
+                                    <label class="main-heading">
+                                        {{fo.lv.OtherFileName}}<a href="" class="fa fa-times padding-10-left" ng-click="fo.lv.uploadImage=' '"></a>
+                                    </label>
+                                </div>
+                                <div class="field-validation-error col-sm-12 col-xs-12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12" ng-show="fo.lv.filesList != null && fo.lv.filesList.length > 0">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>Files</th>
+                                        <th>Download</th>
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+                                <tr ng-repeat="item in fo.lv.filesList">
+                                    <td>{{item.FileNumber}}</td>
+                                    <td class="text-center date">
+                                        <a id="downloadedImg" download></a>
+                                        <a title="Download" ng-click="fo.downloadFile(item)" class="link action-link">
+                                            <i class="link-transaction-icon  fa fa-download"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-center date">
+                                        <a title="Delete" ng-click="fo.deleteFile(item.FileNumber)" class="link action-link">
+                                            <i class="link-transaction-icon  fa fa-trash"></i>
+                                        </a>
+                                    </td>
+
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div ng-hide="fo.lv.filesList.length > 0" class="section-height">
+                        <div ng-show="fo.lv.filesList != undefined && fo.lv.filesList != null">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="col-sm-12 col-xs-12">
+                                        <div class="note-detail">No files found.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-12 col-xs-12 no-padding">
+                            <label class="control-label text-transform-none">Notes</label>
+                            <textarea autocomplete="off" maxlength="1500" name="Notes" ng-model="fo.vm.FileNote" ng-required="true" />
+                            <div class="field-validation-error">
+                                <div ng-messages="FilesListForm.Notes.$error" ng-if="(FilesListForm.Notes.$touched || FilesListForm.Notes.$dirty)  || fo.lv.isFormInvalid ">
+                                    <span ng-message="required">Required</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row col-sm-12 col-xs-12">
+            <div style="padding-bottom:{{fo.lv.setFooterPaddingRecord}}"></div>
+        </div>
+    </div>
+
+</div>

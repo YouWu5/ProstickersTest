@@ -1,0 +1,7 @@
+﻿(function () {
+    'use strict';
+
+    angular.module('app.feedback', [
+       'ui.router'
+    ]);
+})();

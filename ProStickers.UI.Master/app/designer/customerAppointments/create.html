@@ -1,0 +1,84 @@
+﻿<div class="page-container">
+    <div class="col-sm-12 no-padding">
+        <div class="page-head-overlay-form" fix-height>
+            <div class="col-sm-12 no-padding header-flex">
+                <div class="col-sm-8">
+                    <label class="main-heading">{{ shl.lv.title }}</label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="button-container">
+                        <a title="Close" ng-click="shl.Close()" class="button button-grey">Close</a>
+                        <a title="Save" ng-click="shl.save()" ng-class="{ 'save-disable' : (shl.isSubmitted())}" class="button button-green">Save</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div><div class="col-xs-12 col-sm-12 section-border-bottom">&nbsp;</div>
+    <form name="AppointmentRequestForm" id="AppointmentRequestForm" scroll-on-validation="">
+        <div class="col-sm-12 no-padding">
+            <div class="page-without-dashboard">
+                <div class="col-lg-12">
+                    <div class="col-sm-12">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="col-sm-4">
+                                    <label class="bold">Customer name</label>
+                                    <label class="note-detail note-detail-form">{{shl.lv.viewmodel.CustomerName}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="bold">Request date time</label>
+                                    <label class="note-detail note-detail-form">{{shl.lv.viewmodel.RequestDateTime}}</label>
+                                    <div class="field-validation-error">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="glyphicon-asterisk bold">Appointment Date</label>
+                                    <div class="input-group">
+                                        <input type="text" autocomplete="off" class="datepicker" uib-datepicker-popup="MM/dd/yyyy" ng-required="true"
+                                               datepicker-append-to-body="true" show-button-bar="false" name="StartDate"
+                                               ng-model="shl.lv.AppointmentDate" datepicker-options="shl.lv.startDateOptions"
+                                               datepicker-pattern="StartDate" maxlength="10"
+                                               min-date="shl.lv.minDate"
+                                               is-open="shl.openedStart" close-text="Close" ng-change="shl.setTime('date')" />
+                                        <div class="input-group-addon">
+                                            <i class="fa fa-calendar" ng-click="shl.open($event,'openedStart')">
+                                            </i>
+                                        </div>
+                                    </div>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="AppointmentRequestForm.StartDate.$error" ng-if="AppointmentRequestForm.StartDate.$touched || shl.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <label class="glyphicon-asterisk bold">Appointment slot</label>
+                                    <select ng-options="s.Value as s.Text for s in shl.lv.fulldayList" ng-required="true" name="AppointmentSlot" ng-model="shl.lv.viewmodel.TimeSlotID"></select>
+                                    <div class="field-validation-error">
+                                        <div ng-messages="AppointmentRequestForm.AppointmentSlot.$error" ng-if="AppointmentRequestForm.AppointmentSlot.$touched || shl.lv.isFormInvalid">
+                                            <span ng-message="required">Required</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-footer">&nbsp;</div>
+                <div style="margin-top:20px">
+                    <div class="start-up-msg"><h5 style="color:blue"> Time remaining to schedule appointment {{shl.lv.counter}} seconds</h5> </div>
+                </div>
+
+                <div style="margin-top:20px">
+                    <div class="start-up-msg"><h5 style="color:{{shl.lv.color}}">{{shl.lv.messages}}</h5> </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

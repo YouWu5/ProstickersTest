@@ -1,0 +1,61 @@
+﻿<div ng-controller="Messages as msg" fix-height>
+    <div class="msg" ng-if="msg.getMessage().Result > 0">
+        <div ng-if="msg.getMessage().Result === 1">
+            <div class="msg-position {{msg.getMessage().Class}}" style="top: {{msg.height}}">
+                <div class="col-xs-12 col-sm-10">
+                    <i class="fa fa-check-circle"></i>
+                    <div class="msg-label">{{msg.getMessage().Message}}</div>
+                </div>
+                <div class="col-xs-12 col-sm-2 msgButton">
+                    <ul>
+                        <li>
+                            <div>
+                                <a href='' class='fa fa-times' title='Close' ng-click="msg.clearMessage()"></a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="msg.getMessage().Result === 2 || msg.getMessage().Result === 3 || msg.getMessage().Result === 5">
+            <div class="msg-position {{msg.getMessage().Class}}" style="top: {{msg.height}}">
+                <div class="col-xs-12 col-sm-10">
+                    <i class="fa fa-times-circle"></i>
+                    <div class="msg-label">{{msg.getMessage().Message}}</div>
+                </div>
+                <div class="col-xs-12 col-sm-2 msgButton">
+                    <ul>
+                        <li>
+                            <div>
+                                <a href='' class='fa fa-times' title='Close' ng-click="msg.clearMessage()"></a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="msg.getMessage().Result === 4">
+            <div class="msg-position {{msg.getMessage().Class}}" style="top: {{msg.height}}">
+                <div class="col-xs-12 col-sm-10">
+                    <i class="fa fa-info-circle"></i>
+                    <div class="msg-label">{{msg.getMessage().Message}}</div>
+                </div>
+                <div class="col-xs-12 col-sm-2 msgButton">
+                    <ul>
+                        <li>
+                            <div>
+                                <a href='' class='fa fa-times' title='Close' ng-click="msg.clearMessage()"></a>
+                               
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

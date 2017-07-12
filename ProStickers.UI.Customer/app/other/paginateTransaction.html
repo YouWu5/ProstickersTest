@@ -1,0 +1,32 @@
+﻿<div class="dataTables_paginate" ng-if="fo.lv.lastPage > 1">
+    <div class="pagination">
+        <ul ng-show="fo.vm.Pager.ShowPager">
+            <li>
+                <div>
+                    <div ng-show="fo.vm.Pager.PageNumber == 1" class="fill-div paginate_button disabled"><i class="fa fa-backward"></i></div>
+                    <div ng-show="fo.vm.Pager.PageNumber > 1" class="paginate_button active"><a class="fill-div" title="Go to first page" ng-click="fo.listOperation('NavigateToFirstPage','','')" id="maeru-filter-go-first-page" href="#"><i class="fa fa-backward"></i></a></div>
+                </div>
+            </li>
+            <li>
+                <span ng-show="fo.vm.Pager.CurrentStartPage == 1" class="paginate_button disabled"><i class="fa fa-ellipsis-h"></i></span>
+                <span ng-show="fo.vm.Pager.CurrentStartPage > 1" class="paginate_button active"><a title="Previous pages" ng-click="fo.listOperation('NavigateToOlderPages','','')" id="maeru-filter-go-older-pages" href="#"><i class="fa fa-ellipsis-h"></i></a></span>
+            </li>
+            <li ng-repeat="item in fo.lv.pageNumberList" class="pageNumberList">
+                <div>
+                    <div class="fill-div" ng-if="item == fo.vm.Pager.PageNumber" title="Current page" id="maeru-filter-this-page">{{fo.vm.Pager.PageNumber}}</div>
+                    <div ng-if="item != fo.vm.Pager.PageNumber"><a class="fill-div" ng-attr-title="Go to {{ item }}" ng-click="fo.listOperation('NavigateToAtPage',item,'')" id="maeru-filter-go-page" href="#">{{item}}</a></div>
+                </div>
+            </li>
+            <li>
+                <span ng-show="fo.vm.Pager.CurrentLastPage <  fo.lv.lastPage" class="paginate_button active"><a title="Next pages" ng-click="fo.listOperation('NavigateToNewerPages','','')" id="maeru-filter-go-newer-pages" href="#"><i class="fa fa-ellipsis-h"></i></a></span>
+                <span ng-show="fo.vm.Pager.CurrentLastPage == fo.lv.lastPage" class="paginate_button previous disabled"><i class="fa fa-ellipsis-h"></i></span>
+            </li>
+            <li>
+                <div>
+                    <div ng-show="fo.vm.Pager.PageNumber < fo.lv.lastPage" class="paginate_button active"><a class="fill-div" title="Go to last page" ng-click="fo.listOperation('NavigateToLastPage','','')" id="maeru-filter-go-last-page" href="#"><i class="fa fa-forward"></i></a></div>
+                    <div ng-show="fo.vm.Pager.PageNumber == fo.lv.lastPage" class="fill-div paginate_button previous disabled"><i class="fa fa-forward"></i></div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

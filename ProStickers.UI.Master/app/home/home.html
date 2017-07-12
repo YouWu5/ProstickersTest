@@ -1,0 +1,4 @@
+﻿<div ng-if="shl.vm.isRequiredLogin === true">
+    <div ng-controller="masterHome as fo" ng-if="shl.lv.IsMaster === true;" ng-include="'/app/home/masterHome.html'"></div>
+    <div ng-controller="designerHome as fo" ng-if="shl.lv.IsMaster === false;" ng-include="'/app/home/designerHome.html'"></div>
+</div>
