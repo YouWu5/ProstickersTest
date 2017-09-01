@@ -12,7 +12,7 @@
         var fo = this;
         fo.vm = {};
         fo.lv = {};
-        fo.lv.title = 'Add Calendar Appointment';
+        fo.lv.title = 'Schedule Appointment';
         fo.lv.timeSlotList = [];
         fo.lv.designerList = [];
         fo.lv.showMoreDesigner = false;
