@@ -157,7 +157,7 @@
                 shellFactory.GetDefault().then(function (defaultData) {
                     console.log('defaultData', defaultData);
                     shl.vm.userInfo = defaultData;
-
+                    
                     if (shl.lv.provider === 'facebook') {
                         shl.vm.userInfo.FirstName = shl.lv.userResponse.first_name;
                         shl.vm.userInfo.MiddleName = shl.lv.userResponse.middle_name;
