@@ -259,8 +259,11 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\localDev.pubxml" />
     <None Include="Properties\PublishProfiles\localTest.pubxml" />
+    <None Include="Properties\PublishProfiles\prostickerstest-api - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\prostickerstest-api - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />

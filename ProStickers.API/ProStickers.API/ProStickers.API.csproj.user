@@ -3,7 +3,7 @@
   <PropertyGroup>
     <UseIISExpress>true</UseIISExpress>
     <ProjectView>ProjectFiles</ProjectView>
-    <NameOfLastUsedPublishProfile>FolderProfile</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>prostickerstest-api - Web Deploy</NameOfLastUsedPublishProfile>
     <IISExpressSSLPort>44374</IISExpressSSLPort>
   </PropertyGroup>
   <ProjectExtensions>
