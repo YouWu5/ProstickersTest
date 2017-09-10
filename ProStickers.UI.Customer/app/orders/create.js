@@ -41,19 +41,19 @@
             fo.lv.countryList = [{ Name: 'United States', ID: 184 }];
             fo.lv.yearList = initialDataOfCreateOrder.yearList;
             fo.lv.monthList = initialDataOfCreateOrder.monthList;
-            fo.lv.quantityList = [{ 'Text': 1, 'Value': 1 },
-            { 'Text': 2, 'Value': 2 },
-            { 'Text': 3, 'Value': 3 },
-            { 'Text': 4, 'Value': 4 },
-            { 'Text': 5, 'Value': 5 },
-            { 'Text': 6, 'Value': 6 },
-            { 'Text': 7, 'Value': 7 },
-            { 'Text': 8, 'Value': 8 },
-            { 'Text': 9, 'Value': 9 },
-            { 'Text': 10, 'Value': 10 }
-            ];
+            // fo.lv.quantityList = [{ 'Text': 1, 'Value': 1 },
+            // { 'Text': 2, 'Value': 2 },
+            // { 'Text': 3, 'Value': 3 },
+            // { 'Text': 4, 'Value': 4 },
+            // { 'Text': 5, 'Value': 5 },
+            // { 'Text': 6, 'Value': 6 },
+            // { 'Text': 7, 'Value': 7 },
+            // { 'Text': 8, 'Value': 8 },
+            // { 'Text': 9, 'Value': 9 },
+            // { 'Text': 10, 'Value': 10 }
+            // ];
 
-            fo.vm.Quantity = fo.lv.quantityList[0].Text;
+            fo.vm.Quantity = 1;
 
             for (var l = 0; l <= 4; l++) {
                 fo.lv.selectedColorsList.push({
@@ -239,7 +239,7 @@
                 return;
             }
             if (fo.lv.totalSelectedColors === 0) {
-                message.showClientSideErrors('Please select atlease one color.');
+                message.showClientSideErrors('Please select at lease one color.');
                 return;
             }
             console.log('fo.vm.PurchaseDesignImage', fo.vm.PurchaseDesignImage);
@@ -342,7 +342,6 @@
                 else {
                     fo.lv.designWidth = 0;
                 }
-
             }
             if (name === 'width') {
                 fo.vm.Length = 0;
@@ -356,21 +355,28 @@
                     fo.lv.designHeight = 0;
                 }
             }
-            calculatePrice();
-            fo.lv.purchaseAmount = fo.lv.purchaseAmount * fo.vm.Quantity;
-            if (fo.lv.Purchasedesign) {
-                fo.vm.Amount = fo.lv.purchaseAmount + fo.lv.vectorFileAmount;
+            if ( fo.vm.Quantity<0 || fo.vm.Quantity>999  ) {
+                fo.lv.outOfRange = true;
+                return;
             }
             else {
-                fo.vm.Amount = fo.lv.vectorFileAmount;
+                fo.lv.outOfRange = false;
+                calculatePrice();
+                fo.lv.purchaseAmount = fo.lv.purchaseAmount * fo.vm.Quantity;
+                if (fo.lv.Purchasedesign) {
+                    fo.vm.Amount = fo.lv.purchaseAmount + fo.lv.vectorFileAmount;
+                }
+                else {
+                    fo.vm.Amount = fo.lv.vectorFileAmount;
+                }
+    
+                console.log('fo.vm.Quantity', fo.vm.Quantity);
+                
+                if (fo.vm.Amount > 0) {
+                    fo.vm.Amount = fo.vm.Amount + 4;
+                }
             }
-
-            console.log('fo.vm.Quantity', fo.vm.Quantity);
             
-            if (fo.vm.Amount > 0) {
-                fo.vm.Amount = fo.vm.Amount + 4;
-            }
-
         };
 
         fo.selectedItem = function (item) {

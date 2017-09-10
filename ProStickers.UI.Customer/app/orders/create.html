@@ -66,10 +66,10 @@
 
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
                                     <label class="glyphicon-asterisk control-label">Quantity</label>
-                                    <select ng-options="s.Value as s.Text for s in fo.lv.quantityList" ng-required="true" class="input-number no-padding" name="Quantity" ng-model="fo.vm.Quantity" ng-change="fo.selectedSize('Quantity')"></select>
+                                    <input ng-required="true" autocomplete="off" name="Quantity" ng-model="fo.vm.Quantity" class="input-number" positive-decimal-number="true" ng-change="fo.selectedSize('Quantity')" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="CreateOrderForm.Quantity.$error" ng-if="(CreateOrderForm.Quantity.$touched)  || fo.lv.isFormInvalid ">
-                                            <span ng-message="required">Required</span>
+                                        <div>
+                                            <span ng-if="fo.lv.isFormInvalid || fo.lv.outOfRange" >Required, must be an integer from 1-999</span>
                                         </div>
                                     </div>
                                 </div>
@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-3">
                                     <label class="control-label"></label>
-                                    <label class="note-detail">{{"$30.00"}}</label>
+                                    <label class="note-detail text-right">{{"$30.00"}}</label>
                                 </div>
                             </div>
 
