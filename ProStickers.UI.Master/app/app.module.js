@@ -30,7 +30,8 @@
         'jlareau.bowser'
     ]);
 
-    angular.module('app').constant('appUrl', 'https://api.prostickerslive.com/');
+    // angular.module('app').constant('appUrl', 'https://api.prostickerslive.com/');
+    angular.module('app').constant('appUrl', 'https://prostickerstest-api.azurewebsites.net/');
 
     angular.module('app').value('userInfo', {});
 

@@ -28,8 +28,10 @@
         'jlareau.bowser'
     ]);
 
-    angular.module('app').constant('appUrl', 'https://api.prostickerslive.com/');
-
+//    angular.module('app').constant('appUrl', 'https://api.prostickerslive.com/');
+    angular.module('app').constant('appUrl', 'https://prostickerstest-api.azurewebsites.net/');
+    // angular.module('app').constant('appUrl', 'http://localhost:9074/');
+    
     angular.module('app').value('userInfo', {});
 
     customInterceptor.$inject = ['$q', '$injector', 'appUrl', '$location', '$rootScope', 'message', 'spinnerService', 'helper', 'localStorageService'];
