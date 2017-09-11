@@ -3203,6 +3203,7 @@ input[readonly] {
     min-height: 100%;
     overflow: auto;
     padding-bottom: 10px;
+    margin-top: 60px;
 }
 
 #two-button {
