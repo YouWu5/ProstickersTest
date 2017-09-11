@@ -3199,6 +3199,37 @@ input[readonly] {
         font-weight: bold;
     }
 
+#two-button {
+    /*background: #eee;
+    border: 1px solid #D2D1D1;*/
+    width: 45%;
+    min-height: 130px;
+    overflow: auto;
+    margin: 5% auto 0;
+    padding: 20px 40px;
+}
+
+@media (max-width:767px) {
+    #two-button {
+        width: 75% !important;
+        min-height: 100px;
+        margin: 5% auto 0;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width:500px) {
+    #two-button {
+        width: 80% !important;
+    }
+}
+
+@media (max-width:1200px) {
+    #two-button {
+        width: 65%;
+    }
+}
+
 #login-box {
     min-height: 100%;
     overflow: auto;
