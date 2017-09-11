@@ -355,7 +355,7 @@
                     fo.lv.designHeight = 0;
                 }
             }
-            if ( fo.vm.Quantity<0 || fo.vm.Quantity>999 || Number.isInteger(Number(fo.vm.Quantity))===false ) {
+            if ( fo.vm.Quantity<1 || fo.vm.Quantity>999 || Number.isInteger(Number(fo.vm.Quantity))===false ) {
                 console.log("fo.vm.Quantity is int",fo.vm.Quantity,Number.isInteger(Number(fo.vm.Quantity)))
                 fo.lv.outOfRange = true;
                 return;
