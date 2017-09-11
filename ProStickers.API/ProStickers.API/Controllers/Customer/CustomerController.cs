@@ -149,6 +149,23 @@ namespace ProStickers.API.Controllers.Customer
         }
         #endregion
 
+        #region Post HaveSkype
+        [HttpPost]
+        [Route("HaveSkype")]
+        public IHttpActionResult HaveSkype(ListItem vm)
+        {
+            OperationResult result = UserAuthenticationBL.HaveSkype(vm.Text);
+            if (result.Result != Result.Success)
+            {
+                return ResponseMessage(Request.CreateResponse<OperationResult>(HttpStatusCode.PreconditionFailed, result));
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+        #endregion
+
         #endregion      
     }
 }

@@ -9,6 +9,7 @@ namespace ProStickers.ViewModel.Security
         public int UserTypeID { get; set; }
         public string UtcDateTimeOffset { get; set; }
         public bool IsPolicyAccepted { get; set; }
+        public bool HaveSkype { get; set; }
         public List<UserPageListItem> AssignedPageList { get; set; }
     }
 

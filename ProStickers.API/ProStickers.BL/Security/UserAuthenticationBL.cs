@@ -39,6 +39,12 @@ namespace ProStickers.BL.Security
             return new OperationResult(result.Result, result.Message, null);
         }
 
+        public static OperationResult HaveSkype(string userID)
+        {
+            InternalOperationResult result = UserAuthenticationDAL.HaveSkype(userID);
+            return new OperationResult(result.Result, result.Message, null);
+        }
+
         public static bool CheckUserExistsAsync(string userID)
         {
             return UserAuthenticationDAL.CheckUserExistsAsync(userID);

@@ -41,12 +41,14 @@ namespace ProStickers.CloudDAL.Storage.Security
                     {
                         customerEntity.Active = true;
                         customerEntity.IsPolicyAccepted = false;
+                        customerEntity.HaveSkype = false;
                         TableOperation update = TableOperation.InsertOrReplace(customerEntity);
                         await CustomerDAL.customerTable.ExecuteAsync(update);
                     }
                     userSession.Name = customerEntity.FullName;
                     userSession.UserID = customerEntity.PartitionKey;
                     userSession.IsPolicyAccepted = customerEntity.IsPolicyAccepted;
+                    userSession.HaveSkype = customerEntity.HaveSkype;
                     userSession.UserTypeID = 3;
                 }
                 else
@@ -215,6 +217,22 @@ namespace ProStickers.CloudDAL.Storage.Security
             {
                 customerEntity.IsPolicyAccepted = true;
                 customerEntity.PolicyAcceptedDate = DateTime.UtcNow.Date;
+                TableOperation insertOperation = TableOperation.Replace(customerEntity);
+                CustomerDAL.customerTable.ExecuteAsync(insertOperation);
+                return new InternalOperationResult(Result.Success, "Saved successfully.", null);
+            }
+            else
+            {
+                return new InternalOperationResult(Result.SDError, "Oop's something went wrong.", null);
+            }
+        }
+
+        public static InternalOperationResult HaveSkype(string userID)
+        {
+            CustomerEntity customerEntity = CustomerDAL.customerTable.CreateQuery<CustomerEntity>().Where(c => c.PartitionKey == userID).FirstOrDefault();
+            if (customerEntity != null)
+            {
+                customerEntity.HaveSkype = true;
                 TableOperation insertOperation = TableOperation.Replace(customerEntity);
                 CustomerDAL.customerTable.ExecuteAsync(insertOperation);
                 return new InternalOperationResult(Result.Success, "Saved successfully.", null);

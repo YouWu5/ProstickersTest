@@ -35,6 +35,7 @@ namespace ProStickers.CloudDAL.Entity.Customer
         public string ImageGUID { get; set; }
         public string FileNote { get; set; }
         public bool IsPolicyAccepted { get; set; }
+        public bool HaveSkype { get; set; }
         public DateTime? PolicyAcceptedDate { get; set; }
         public bool Active { get; set; }
         public string CreatedBy { get; set; }
