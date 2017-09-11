@@ -5,7 +5,7 @@ angular.module('app.home').config(['$urlRouterProvider', '$stateProvider', funct
     $stateProvider
          .state('/', {
              url: '',
-             templateUrl: 'app/home/home.html',
+             templateUrl: 'app/home/landingPage.html',
              //resolve: {
              //    initialDataOfCustomerHome: ['customerHomeFactory', '$q', function (customerHomeFactory, $q) {
              //        var promises = {
