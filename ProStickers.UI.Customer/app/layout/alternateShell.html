@@ -4,6 +4,6 @@
         <div ng-include="'/app/layout/headernav.html'"></div>
         <div ng-if="shl.lv.isLogin == true &&  shl.lv.isTermsService == false" ng-include="'/app/home/agreement.html'"></div>
         <div ng-if="shl.lv.isLogin == true &&  shl.lv.isTermsService == true && shl.lv.customerProfile == false" ng-include="'/app/layout/customerProfile.html'"></div>
-        
+        <div ng-if="shl.lv.isLogin == true &&  shl.lv.isTermsService == true && shl.lv.customerProfile == true && shl.lv.haveSkype == false" ng-include="'/app/home/needskype.html'"></div>
     </section>
 </div>

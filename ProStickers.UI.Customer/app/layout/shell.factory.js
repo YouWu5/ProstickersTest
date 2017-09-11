@@ -13,6 +13,7 @@
             GetUserSession: GetUserSession,
             LogOut: LogOut,
             submitAgreement: submitAgreement,
+            submitHaveSkype: submitHaveSkype,
             CustomerSession: CustomerSession,
             GetDefault: GetDefault
         };
@@ -43,7 +44,21 @@
                 def.reject(error);
             });
             return def.promise;
-        }       
+        }
+        
+        function submitHaveSkype(submitModel) {
+            var def = $q.defer();
+            $http.post(appUrl + 'Customer/Customer/HaveSkype', submitModel)
+            .then(function (response) {
+                def.resolve(response.data);
+
+            }).catch(function fail(error) {
+                console.log('LoginFactory.haveSkype', error);
+                def.reject(error);
+            });
+            return def.promise;
+        }   
+
         function GetDefault() {
             var def = $q.defer();
             $http.get(appUrl + 'Customer/Customer/Default')

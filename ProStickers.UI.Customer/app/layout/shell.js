@@ -17,6 +17,7 @@
 
         shl.lv.isLogin = false;
         shl.lv.isTermsService = false;
+        shl.lv.haveSkype = false;
 
         shl.lv.topHeightPaddingOne = null;
         shl.lv.setFooterPaddingForm = null;
@@ -30,28 +31,33 @@
             var userInfo = localStorageService.get('UserSession');
             shl.lv.isTermsService = localStorageService.get('aggrement');
             shl.lv.customerProfile = localStorageService.get('customerProfile');
+            shl.lv.haveSkype = localStorageService.get('haveSkype');
 
             console.log('accesstoken', accesstoken);
             console.log('userInfo', userInfo);
             console.log('shl.lv.isTermsService', shl.lv.isTermsService);
             console.log('shl.lv.customerProfile', shl.lv.customerProfile);
+            console.log('shl.lv.haveSkype', shl.lv.haveSkype);
 
-            if (accesstoken !== null && userInfo !== null && shl.lv.isTermsService && shl.lv.customerProfile) {
+            if (accesstoken !== null && userInfo !== null && shl.lv.isTermsService && shl.lv.customerProfile && shl.lv.haveSkype) {
 
                 shl.lv.UserName = userInfo.Name;
                 shl.lv.AssignedModuleList = userInfo.AssignedPageList;
                 shl.lv.isLogin = true;
                 shl.lv.isTermsService = true;
                 shl.lv.customerProfile = true;
+                shl.lv.haveSkype = true;
             }
             else if (accesstoken != null && userInfo !== null && !shl.lv.isTermsService) {
                 shl.lv.isLogin = true;
                 shl.lv.isTermsService = false;
                 shl.lv.customerProfile = false;
+                shl.lv.haveSkype = false;
             }
             else if (accesstoken != null && userInfo !== null && shl.lv.isTermsService && !shl.lv.customerProfile) {
                 shl.lv.isLogin = true;
                 shl.lv.customerProfile = false;
+                shl.lv.haveSkype = false;
                 shl.lv.UserName = userInfo.Name;
                 getCustomerDetails();
             }
@@ -59,6 +65,7 @@
                 shl.lv.isLogin = false;
                 shl.lv.customerProfile = false;
                 shl.lv.isTermsService = false;
+                shl.lv.haveSkype = false;
             }
 
             shl.lv.errorMessage = localStorageService.get('LoginErrorMessage');
@@ -110,6 +117,18 @@
                 });
             }
 
+        };
+
+        var submitHaveSkypeModel = {};
+        shl.submitHaveSkype = function () {
+            console.log('shl.submitHaveSkype', userInfo);
+            submitHaveSkypeModel.Text = userInfo.UserID;
+            submitHaveSkypeModel.Value = null;
+
+            shellFactory.submitHaveSkype(submitHaveSkypeModel).then(function () {
+                localStorageService.set('haveSkype', true);
+                shl.lv.haveSkype = true;
+            });
         };
 
         shl.Login = function (provider) {
@@ -194,16 +213,19 @@
                             shl.lv.isTermsService = true;
                             shl.lv.isLogin = true;
                             shl.lv.customerProfile = true;
-
+                            console.log('#shl.lv.isTermsService',shl.lv.isTermsService);
+                            if (customerSessionData.ReturnedData.HaveSkype) {
+                                localStorageService.set('haveSkype', true);
+                                shl.lv.haveSkype = true;
+                                console.log('#shl.lv.haveSkype',shl.lv.haveSkype);
+                            }
                             window.location.reload();
-
                         }
                         else {
                             localStorageService.set('customerProfile', false);
                             shl.lv.customerProfile = false;
                             shl.lv.isTermsService = false;
                         }
-
                         localStorageService.set('UserSession', customerSessionData.ReturnedData);
                         localStorageService.set('accessToken', LocalAccessTokenResponse.ReturnedData);
                         console.log('shl.lv.AssignedModuleList', shl.lv.AssignedModuleList);

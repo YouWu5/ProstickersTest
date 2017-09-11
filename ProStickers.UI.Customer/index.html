@@ -73,10 +73,10 @@
 
             </div>
         </div>-->
-        <div ng-if="(shl.lv.isLogin == true) &&  (shl.lv.isTermsService == false || shl.lv.customerProfile == false)">
+        <div ng-if="(shl.lv.isLogin == true) &&  (shl.lv.isTermsService == false || shl.lv.customerProfile == false || shl.lv.haveSkype == false)">
             <div ng-include="'/app/layout/alternateShell.html'"></div>
         </div>
-        <div ng-if="shl.lv.isLogin == true &&  shl.lv.isTermsService == true && shl.lv.customerProfile == true">
+        <div ng-if="shl.lv.isLogin == true &&  shl.lv.isTermsService == true && shl.lv.customerProfile == true && shl.lv.haveSkype == true">
             <div ng-include="'/app/layout/shell.html'"></div>
         </div>
 
