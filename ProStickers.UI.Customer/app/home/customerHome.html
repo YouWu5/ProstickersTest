@@ -131,7 +131,9 @@
                                             <tr ng-repeat="item in fo.lv.designList track by $index">
                                                 <td class="imageInTable">
                                                     <div class="link-transaction-image">
-                                                        <img class="companyLogoNew" src="{{item.DesignImage.ImageBuffer}}" />
+                                                        <a href="" ng-click="fo.OpenDesignDetail(item.DesignNumber)">
+                                                            <img class="companyLogoNew" src="{{item.DesignImage.ImageBuffer}}" />
+                                                        </a>
                                                         <span class="image-link">
                                                             <a href="" ng-click="fo.OpenDesignDetail(item.DesignNumber)">
                                                                 <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>

@@ -33,7 +33,9 @@
                             <tr ng-repeat="item in fo.vm.Data">
                                 <td class="imageInTable">
                                     <div class="link-transaction-image">
-                                        <img class="companyLogoNew" src="{{item.DesignImage.ImageBuffer}}" />
+                                        <a href="" ng-click="fo.OpenDetail(item.DesignNumber)">
+                                            <img class="companyLogoNew" src="{{item.DesignImage.ImageBuffer}}" />
+                                        </a>
                                         <span class="image-link">
                                             <a href="" ng-click="fo.OpenDetail(item.DesignNumber)">
                                                 <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
