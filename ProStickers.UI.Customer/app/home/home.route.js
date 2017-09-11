@@ -4,7 +4,7 @@ angular.module('app.home').config(['$urlRouterProvider', '$stateProvider', funct
     $urlRouterProvider.otherwise('/');
     $stateProvider
          .state('/', {
-             url: '',
+             url: '/',
              templateUrl: 'app/home/landingPage.html',
              //resolve: {
              //    initialDataOfCustomerHome: ['customerHomeFactory', '$q', function (customerHomeFactory, $q) {
