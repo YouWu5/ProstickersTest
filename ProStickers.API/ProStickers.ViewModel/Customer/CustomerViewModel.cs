@@ -35,6 +35,7 @@ namespace ProStickers.ViewModel.Customer
         public string ImageGUID { get; set; }
         public string FileNote { get; set; }
         public bool IsPolicyAccepted { get; set; }
+        public bool HaveSkype { get; set; }
         public DateTime? PolicyAcceptedDate { get; set; }
         public bool Active { get; set; }
         public DateTime UpdatedTS { get; set; }
@@ -127,6 +128,7 @@ namespace ProStickers.ViewModel.Customer
         public string ImageGUID { get; set; }
         public string FileNote { get; set; }
         public bool IsPolicyAccepted { get; set; }
+        public bool HaveSkype { get; set; }
         public DateTime? PolicyAcceptedDate { get; set; }
         public bool Active { get; set; }
         public DateTime UpdatedTS { get; set; }

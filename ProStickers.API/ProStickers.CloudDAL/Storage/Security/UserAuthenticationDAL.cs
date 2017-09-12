@@ -61,6 +61,7 @@ namespace ProStickers.CloudDAL.Storage.Security
                         userSession.Name = cEntity.FullName;
                         userSession.UserID = cEntity.PartitionKey;
                         userSession.IsPolicyAccepted = false;
+                        userSession.HaveSkype = false;
                         userSession.UserTypeID = 3;
                     }
                 }
