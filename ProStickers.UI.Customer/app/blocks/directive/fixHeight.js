@@ -18,13 +18,14 @@
 
         function link() {
             $timeout(function () {
-                var getHeight = $('.page-head-container').innerHeight();
-                if (getHeight !== undefined) {
-                    helper.setHeight(getHeight + 65 + 'px');
-                }
-                else {
-                    helper.setHeight(55 + 'px');
-                }
+                // var getHeight = $('.page-head-container').innerHeight();
+                // if (getHeight !== undefined) {
+                //     helper.setHeight(getHeight + 65 + 'px');
+                // }
+                // else {
+                //     helper.setHeight(55 + 'px');
+                // }
+                helper.setHeight(80 + 'px');
 
             }, 100);
         }
