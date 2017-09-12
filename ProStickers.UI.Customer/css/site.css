@@ -3209,7 +3209,7 @@ input[readonly] {
 #two-button {
     /*background: #eee;
     border: 1px solid #D2D1D1;*/
-    width: 45%;
+    width: 50%;
     min-height: 130px;
     overflow: auto;
     margin: 5% auto 0;
