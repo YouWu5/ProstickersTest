@@ -18,6 +18,7 @@
                            var initData = {};
                            initData.viewModel = values.vm;
                            initData.appointmentListViewModel = values.al;
+                           console.log("appointment.route.js-state(AptmntList)-initData",initData)
                            return initData;
                        });
 

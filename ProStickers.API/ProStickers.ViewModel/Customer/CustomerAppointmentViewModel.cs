@@ -31,6 +31,7 @@ namespace ProStickers.ViewModel.Customer
     #region CustomerAppointmentListViewModel
     public class CustomerAppointmentListViewModel
     {
+        public string MeetingLink { get; set; }
         public string AppointmentNumber { get; set; }
         public string AppointmentDateTime { get; set; }
         public string RequestDateTime { get; set; }

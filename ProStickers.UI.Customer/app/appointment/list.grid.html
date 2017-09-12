@@ -33,6 +33,7 @@
                                 </tr>
                             </thead>
                             <tr ng-repeat="item in fo.vm.AppointmentListViewModel.Data">
+                                <td>{{item.MeetingLink}}</td>
                                 <td class="link-transaction">
                                     {{item.AppointmentNumber}}
                                     <a href="" class="" ng-click="fo.OpenDetail(item.AppointmentNumber)" >

@@ -29,10 +29,11 @@ namespace ProStickers.CloudDAL.Storage.Customer
         {
             string filter = TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, customerID);
 
-            TableQuery<DynamicTableEntity> projectionQuery = new TableQuery<DynamicTableEntity>().Select(new string[] { "AppointmentNumber", "AppointmentDateTime", "RequestDateTime", "AppointmentStatus", "UpdatedTS" }).Where(filter);
+            TableQuery<DynamicTableEntity> projectionQuery = new TableQuery<DynamicTableEntity>().Select(new string[] { "MeetingLink", "AppointmentNumber", "AppointmentDateTime", "RequestDateTime", "AppointmentStatus", "UpdatedTS" }).Where(filter);
 
             EntityResolver<ViewModel.Customer.CustomerAppointmentListViewModel> resolver = (pk, rk, ts, props, etag) => new ViewModel.Customer.CustomerAppointmentListViewModel
             {
+                MeetingLink = props["MeetingLink"].StringValue,
                 AppointmentNumber = props["AppointmentNumber"].StringValue,
                 AppointmentDateTime = props["AppointmentDateTime"].StringValue,
                 RequestDateTime = props["RequestDateTime"].StringValue,

@@ -31,6 +31,7 @@ namespace ProStickers.BL.Customer
 
             pager.ColumnList = new List<ListItem>()
             {
+                new ListItem { Text = "Meeting Link", Value = "MeetingLink" },
                 new ListItem { Text = "Appointment number", Value = "AppointmentNumber" },
                 new ListItem { Text = "Appointment date time", Value = "AppointmentDateTime" },
                 new ListItem { Text = "Request date time", Value = "RequestDateTime" } ,

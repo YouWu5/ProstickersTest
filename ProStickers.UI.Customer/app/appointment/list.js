@@ -29,7 +29,7 @@
             else {
                 fo.vm.CallRequestViewModel = initialDataOfAppointmentList.viewModel;
                 fo.vm.AppointmentListViewModel = initialDataOfAppointmentList.appointmentListViewModel;
-                console.log('fo.vm.AppointmentListViewModel 2', fo.vm.AppointmentListViewModel.Data);
+                console.log('fo.vm.AppointmentListViewModel 2', fo.vm.AppointmentListViewModel);
                 makePageNumber();
             }
         }
