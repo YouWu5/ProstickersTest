@@ -35,6 +35,7 @@
 
             console.log('accesstoken', accesstoken);
             console.log('userInfo', userInfo);
+            console.log('shl.lv.isLogin', shl.lv.isLogin);
             console.log('shl.lv.isTermsService', shl.lv.isTermsService);
             console.log('shl.lv.customerProfile', shl.lv.customerProfile);
             console.log('shl.lv.haveSkype', shl.lv.haveSkype);
@@ -60,6 +61,11 @@
                 shl.lv.haveSkype = false;
                 shl.lv.UserName = userInfo.Name;
                 getCustomerDetails();
+            }
+            else if (accesstoken != null && userInfo !== null && shl.lv.isTermsService && shl.lv.customerProfile && !shl.lv.haveSkype) {
+                shl.lv.isLogin = true;
+                shl.lv.customerProfile = true;
+                shl.lv.haveSkype = false;
             }
             else {
                 shl.lv.isLogin = false;
@@ -104,6 +110,7 @@
 
         var submitAgreementModel = {};
         shl.submitAgreement = function () {
+            var userInfo = localStorageService.get('UserSession');
             console.log('shl.lv.isAgree', userInfo);
             if (shl.lv.isAgree) {
                 submitAgreementModel.Text = userInfo.UserID;
@@ -121,6 +128,7 @@
 
         var submitHaveSkypeModel = {};
         shl.submitHaveSkype = function () {
+            var userInfo = localStorageService.get('UserSession');
             console.log('shl.submitHaveSkype', userInfo);
             submitHaveSkypeModel.Text = userInfo.UserID;
             submitHaveSkypeModel.Value = null;
@@ -129,6 +137,9 @@
                 localStorageService.set('haveSkype', true);
                 shl.lv.haveSkype = true;
             });
+            shl.lv.UserName = userInfo.Name;
+            shl.lv.AssignedModuleList = userInfo.AssignedPageList;
+
         };
 
         shl.Login = function (provider) {
@@ -213,6 +224,8 @@
                             shl.lv.isTermsService = true;
                             shl.lv.isLogin = true;
                             shl.lv.customerProfile = true;
+                            localStorageService.set('haveSkype', false);
+                            shl.lv.haveSkype = false;
                             console.log('#shl.lv.isTermsService',shl.lv.isTermsService);
                             if (customerSessionData.ReturnedData.HaveSkype) {
                                 localStorageService.set('haveSkype', true);
@@ -225,6 +238,7 @@
                             localStorageService.set('customerProfile', false);
                             shl.lv.customerProfile = false;
                             shl.lv.isTermsService = false;
+                            shl.lv.haveSkype = false;
                         }
                         localStorageService.set('UserSession', customerSessionData.ReturnedData);
                         localStorageService.set('accessToken', LocalAccessTokenResponse.ReturnedData);
