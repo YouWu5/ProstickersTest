@@ -382,29 +382,32 @@
 
         fo.selectedItem = function (item) {
             fo.lv.totalSelectedColors = 0;
-
             for (var l1 = 0; l1 < fo.vm.ColorList.length; l1++) {
                 if (fo.vm.ColorList[l1].IsSelected) {
                     fo.lv.totalSelectedColors = fo.lv.totalSelectedColors + 1;
                 }
             }
             if (fo.lv.totalSelectedColors > 5) {
+                fo.lv.totalSelectedColors -= 1;
                 item.IsSelected = false;
                 return;
             }
             else {
-
                 if (item.IsSelected) {
-                    var countNames = 0;
-                    for (var i2 = 0; i2 < fo.lv.selectedColorsList.length; i2++) {
-                        if (fo.lv.selectedColorsList[i2].Name !== null) {
-                            countNames++;
+                    var flag = false;
+                    for (var i3 = 0; i3 < fo.lv.selectedColorsList.length; i3++) {
+                        if (fo.lv.selectedColorsList[i3].Name === null && fo.lv.selectedColorsList[i3].IsSelected) {
+                            fo.lv.selectedColorsList[i3].Name = item.Name;
+                            fo.lv.selectedColorsList[i3].IsSelected = item.IsSelected;
+                            fo.lv.selectedColorsList[i3].ImageURL = item.ImageURL;
+                            fo.lv.selectedColorsList[i3].ColorSequence = i3 + 1;
+                            flag = true;
+                            break;
                         }
                     }
-                    if (countNames > 0) {
+                    if (flag == false) {
                         for (var i3 = 0; i3 < fo.lv.selectedColorsList.length; i3++) {
                             if (fo.lv.selectedColorsList[i3].Name === null) {
-
                                 fo.lv.selectedColorsList[i3].Name = item.Name;
                                 fo.lv.selectedColorsList[i3].IsSelected = item.IsSelected;
                                 fo.lv.selectedColorsList[i3].ImageURL = item.ImageURL;
@@ -412,12 +415,6 @@
                                 break;
                             }
                         }
-                    }
-                    else {
-                        fo.lv.selectedColorsList[0].Name = item.Name;
-                        fo.lv.selectedColorsList[0].ColorSequence = 1;
-                        fo.lv.selectedColorsList[0].IsSelected = item.IsSelected;
-                        fo.lv.selectedColorsList[0].ImageURL = item.ImageURL;
                     }
                 }
 
@@ -432,17 +429,6 @@
                     }
                 }
 
-                //fo.lv.selectedColorsList = [];
-                //for (var l = 0; l < fo.vm.ColorList.length; l++) {
-                //    if (fo.vm.ColorList[l].IsSelected) {
-                //        fo.lv.selectedColorsList.push({
-                //            Name: fo.vm.ColorList[l].Name,
-                //            IsSelected: fo.vm.ColorList[l].IsSelected,
-                //            ImageURL: fo.vm.ColorList[l].ImageURL
-                //        });
-                //    }
-                //}
-
                 calculatePrice();
                 fo.lv.purchaseAmount = fo.lv.purchaseAmount * fo.vm.Quantity;
                 if (fo.lv.Purchasedesign) {
@@ -456,8 +442,46 @@
                     fo.vm.Amount = fo.vm.Amount + 4;
                 }
             }
-            console.log('fo.lv.selectedColorsList', fo.lv.selectedColorsList);
         };
+
+        fo.modifySelectedColors = function (item) {
+            if (item.IsSelected === false) {
+                for (var i4 = 0; i4 < fo.vm.ColorList.length; i4++) {
+                    if (fo.vm.ColorList[i4].IsSelected){
+                        if (fo.vm.ColorList[i4].Name === item.Name) {
+                            fo.vm.ColorList[i4].IsSelected = false;
+                            break;
+                        }
+                        else {
+                            continue;
+                        }
+                    }
+                }
+                item.Name = null;
+                item.IsSelected = false;
+                item.ImageURL = null;
+                item.ColorSequence = 0;
+            }
+            fo.lv.totalSelectedColors = 0;
+            for (var l1 = 0; l1 < fo.lv.selectedColorsList.length; l1++) {
+                if (fo.lv.selectedColorsList[l1].Name !== null) {
+                    fo.lv.totalSelectedColors = fo.lv.totalSelectedColors + 1;
+                }
+            }
+            console.log('fo.lv.totalSelectedColors', fo.lv.totalSelectedColors);
+            calculatePrice();
+            fo.lv.purchaseAmount = fo.lv.purchaseAmount * fo.vm.Quantity;
+            if (fo.lv.Purchasedesign) {
+                fo.vm.Amount = fo.lv.purchaseAmount + fo.lv.vectorFileAmount;
+            }
+            else {
+                fo.vm.Amount = fo.lv.vectorFileAmount;
+            }
+            if (fo.vm.Amount > 0) {
+                fo.vm.Amount = fo.vm.Amount + 4;
+            }
+            console.log('fo.lv.selectedColorsList', fo.lv.selectedColorsList);
+        }
 
         function calculatePrice() {
 
