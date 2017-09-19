@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.users')
-        .factory('UsersCreateFactory', UsersCreateFactory);
+        .module('app.coupons')
+        .factory('CouponsCreateFactory', CouponsCreateFactory);
 
-    UsersCreateFactory.$inject = ['$http', '$q', 'appUrl'];
+    CouponsCreateFactory.$inject = ['$http', '$q', 'appUrl'];
 
-    function UsersCreateFactory($http, $q, appUrl) {
+    function CouponsCreateFactory($http, $q, appUrl) {
         var service = {
             getDefaultViewModel: getDefaultViewModel,
             submit: submit,
@@ -18,11 +18,11 @@
 
         function getDefaultViewModel() {
             var def = $q.defer();
-            $http.get(appUrl + 'Master/User/Default').then(function (response) {
+            $http.get(appUrl + 'Master/Coupon/Default').then(function (response) {
                 def.resolve(response.data);
             })
              .catch(function fail(error) {
-                 console.log('UsersCreateFactory.getDefaultViewModel', error);
+                 console.log('CouponsCreateFactory.getDefaultViewModel', error);
                  def.reject(error);
              });
             return def.promise;
@@ -30,11 +30,11 @@
 
         function submit(ViewModel) {
             var def = $q.defer();
-            $http.post(appUrl + 'Master/User', ViewModel).then(function (response) {
+            $http.post(appUrl + 'Master/Coupon', ViewModel).then(function (response) {
                 def.resolve(response.data);
             })
             .catch(function fail(error) {
-                console.log('UsersCreateFactory.submit', error);
+                console.log('CouponsCreateFactory.submit', error);
                 def.reject(error);
             });
             return def.promise;
@@ -42,11 +42,11 @@
 
         function getRoleList() {
             var def = $q.defer();
-            $http.get(appUrl + 'Master/User/UserTypeList').then(function (response) {
+            $http.get(appUrl + 'Master/Coupon/CouponTypeList').then(function (response) {
                 def.resolve(response.data);
             })
              .catch(function fail(error) {
-                 console.log('UsersCreateFactory.getRoleList', error);
+                 console.log('CouponsCreateFactory.getRoleList', error);
                  def.reject(error);
              });
             return def.promise;

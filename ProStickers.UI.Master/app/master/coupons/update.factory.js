@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.users')
-        .factory('UsersUpdateFactory', UsersUpdateFactory);
+        .module('app.coupons')
+        .factory('CouponsUpdateFactory', CouponsUpdateFactory);
 
-    UsersUpdateFactory.$inject = ['$http', '$q', 'appUrl'];
+    CouponsUpdateFactory.$inject = ['$http', '$q', 'appUrl'];
 
-    function UsersUpdateFactory($http, $q, appUrl) {
+    function CouponsUpdateFactory($http, $q, appUrl) {
 
         var service = {
             getDefaultViewModel: getDefaultViewModel,
@@ -18,11 +18,11 @@
 
         function getDefaultViewModel(id) {
             var def = $q.defer();
-            $http.get(appUrl + 'Master/User/' + id + '/GetByID').then(function (response) {
+            $http.get(appUrl + 'Master/Coupon/' + id + '/GetByID').then(function (response) {
                 def.resolve(response.data);
             })
              .catch(function fail(error) {
-                 console.log('UsersUpdateFactory.getDefaultViewModel', error);
+                 console.log('CouponsUpdateFactory.getDefaultViewModel', error);
                  def.reject(error);
              });
             return def.promise;
@@ -30,11 +30,11 @@
 
         function submit(viewModel) {
             var def = $q.defer();
-            $http.put(appUrl + 'Master/User', viewModel)
+            $http.put(appUrl + 'Master/Coupon', viewModel)
             .then(function (response) {
                 def.resolve(response.data);
             }).catch(function fail(error) {
-                console.log('UsersUpdateFactory.submit', error);
+                console.log('CouponsUpdateFactory.submit', error);
                 def.reject(error);
             });
             return def.promise;

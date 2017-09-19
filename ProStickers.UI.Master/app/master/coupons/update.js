@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.users')
-        .controller('UsersUpdate', UsersUpdate);
+        .module('app.coupons')
+        .controller('CouponsUpdate', CouponsUpdate);
 
-    UsersUpdate.$inject = ['$location', '$state', '$scope', 'helper', 'UsersUpdateFactory', 'message', 'stackView', '$ngBootbox', '$timeout', 'initialDataOfUsersUpdate'];
+    CouponsUpdate.$inject = ['$location', '$state', '$scope', 'helper', 'CouponsUpdateFactory', 'message', 'stackView', '$ngBootbox', '$timeout', 'initialDataOfCouponsUpdate'];
 
-    function UsersUpdate($location, $state, $scope, helper, UsersUpdateFactory, message, stackView, $ngBootbox, $timeout, initialDataOfUsersUpdate) {
+    function CouponsUpdate($location, $state, $scope, helper, CouponsUpdateFactory, message, stackView, $ngBootbox, $timeout, initialDataOfCouponsUpdate) {
         /* jshint validthis:true */
 
         /////////// Variable declaration starts here //////////////
@@ -15,7 +15,7 @@
         var fo = this;
         fo.vm = {};
         fo.lv = {};
-        fo.lv.title = 'Edit User';
+        fo.lv.title = 'Edit Coupon';
 
         //////////// Variable declaration. ends here//////////////
 
@@ -24,7 +24,7 @@
         initializeController();
 
         function initializeController() {
-            fo.vm = initialDataOfUsersUpdate.viewModel.ReturnedData;
+            fo.vm = initialDataOfCouponsUpdate.viewModel.ReturnedData;
             console.log('fo.vm', fo.vm);
             if (fo.vm.ImageGUID !== null) {
                 fo.lv.uploadImage = angular.copy(fo.vm.ImageGUID);
@@ -54,7 +54,7 @@
                     }
                 }
             };
-            if ($scope.UserUpdateForm.$dirty) {
+            if ($scope.CouponUpdateForm.$dirty) {
                 $ngBootbox.customDialog(options);
             }
             else {
@@ -69,8 +69,8 @@
         };
 
         fo.Save = function () {
-            if ($scope.UserUpdateForm.$invalid) {
-                console.log('$scope.UserUpdateForm', $scope.UserUpdateForm.$error);
+            if ($scope.CouponUpdateForm.$invalid) {
+                console.log('$scope.CouponUpdateForm', $scope.CouponUpdateForm.$error);
                 helper.scrollToError();
                 fo.lv.isFormInvalid = true;
                 return;
@@ -87,11 +87,11 @@
                     }
                 }
             }
-            UsersUpdateFactory.submit(fo.vm).then(function (data) {
+            CouponsUpdateFactory.submit(fo.vm).then(function (data) {
                 if (data.Result === 1) // Success
                 {
                     message.showServerSideMessage(data, true);
-                    $scope.UserUpdateForm.$setPristine();
+                    $scope.CouponUpdateForm.$setPristine();
                     stackView.closeThisView();
                 }
                 helper.setIsSubmitted(false);
@@ -100,7 +100,7 @@
 
         fo.updateActive = function () {
             var options = {
-                message: 'Are you sure you want to make the user inactive?',
+                message: 'Are you sure you want to make the coupon inactive?',
                 buttons: {
                     success: {
                         label: ' ',

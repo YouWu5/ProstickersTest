@@ -12,7 +12,7 @@
             </div>
         </div>
     </div>
-    <form name="UserUpdateForm" id="UserUpdateForm" scroll-on-validation="">
+    <form name="CouponUpdateForm" id="CouponUpdateForm" scroll-on-validation="">
         <div class="container-page">
             <div class="page-with-dashboard" fix-form-height style="padding-top:{{fo.lv.topHeightPaddingOne}}">
                 <div class="col-lg-12 section-height">
@@ -23,7 +23,7 @@
                                     <label class="glyphicon-asterisk control-label">First name</label>
                                     <input type="text" class="form-control" autocomplete="off" name="firstName" maxlength="60" ng-required="true" ng-model="fo.vm.FirstName" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="UserUpdateForm.firstName.$error" ng-if="UserUpdateForm.firstName.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponUpdateForm.firstName.$error" ng-if="CouponUpdateForm.firstName.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                                     <label class="glyphicon-asterisk control-label">Last name</label>
                                     <input type="text" class="form-control" autocomplete="off" name="lastName" maxlength="60" ng-required="true" ng-model="fo.vm.LastName" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="UserUpdateForm.lastName.$error" ng-if="UserUpdateForm.lastName.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponUpdateForm.lastName.$error" ng-if="CouponUpdateForm.lastName.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                     <label class="small-heading"></label>
                                     <div class="col-sm-6 col-xs-6  no-padding">
                                         <span class="file-input button button-green import-button btn-file" title="Browse">
-                                            Browse <input type="file" title="Browse" ng-model="fo.lv.novalue" class="filestyle" accept="image/*" file-read-user-image="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
+                                            Browse <input type="file" title="Browse" ng-model="fo.lv.novalue" class="filestyle" accept="image/*" file-read-coupon-image="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
                                         </span>
                                         <div class="field-validation-error col-sm-12 col-xs-12">
                                         </div>
@@ -79,15 +79,15 @@
                             <div class="col-sm-12 col-Flex">
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
                                     <label class="glyphicon-asterisk control-label">Role</label>
-                                    <label class="note-detail note-detail-form">{{fo.vm.UserType}}</label>
+                                    <label class="note-detail note-detail-form">{{fo.vm.CouponType}}</label>
                                     <div class="field-validation-error">
                                     </div>
                                 </div>
-                                <div ng-if="fo.vm.UserTypeID === 2" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
+                                <div ng-if="fo.vm.CouponTypeID === 2" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
                                     <label class="glyphicon-asterisk control-label">Skype id</label>
                                     <input type="text" class="form-control" autocomplete="off" name="skypeid" maxlength="60" ng-model="fo.vm.SkypeID" ng-required="true" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="UserUpdateForm.skypeid.$error" ng-if="UserUpdateForm.skypeid.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponUpdateForm.skypeid.$error" ng-if="CouponUpdateForm.skypeid.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>

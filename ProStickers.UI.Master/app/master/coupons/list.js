@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.users')
-        .controller('UsersList', UsersList);
+        .module('app.coupons')
+        .controller('CouponsList', CouponsList);
 
-    UsersList.$inject = ['$location', '$state', 'stackView', 'UsersListFactory', '$ngBootbox', '$timeout', 'initialDataOfUsersList', 'message'];
+    CouponsList.$inject = ['$location', '$state', 'stackView', 'CouponsListFactory', '$ngBootbox', '$timeout', 'initialDataOfCouponsList', 'message'];
 
-    function UsersList($location, $state, stackView, UsersListFactory, $ngBootbox, $timeout, initialDataOfUsersList, message) {
+    function CouponsList($location, $state, stackView, CouponsListFactory, $ngBootbox, $timeout, initialDataOfCouponsList, message) {
         /* jshint validthis:true */
 
         /////////// Variable declaration starts here //////////////
@@ -15,7 +15,7 @@
         var fo = this;
         fo.vm = {};
         fo.lv = {};
-        fo.lv.title = 'Users';
+        fo.lv.title = 'Coupons';
         fo.lv.inActiveModel = {};
 
         //////////// Variable declaration. ends here//////////////
@@ -26,13 +26,13 @@
 
         function initializeController() {
             var obj = stackView.getLastViewDetail();
-            if (obj.formName === 'UsersList') {
+            if (obj.formName === 'CouponsList') {
                 fo.vm = obj.formObject.vm;
                 fo.lv = obj.formObject.lv;
                 stackView.discardViewDetail();
             }
             else {
-                fo.vm = initialDataOfUsersList.viewModel;
+                fo.vm = initialDataOfCouponsList.viewModel;
                 makePageNumber();
                 console.log('fo.vm @ initialize', fo.vm);
             }
@@ -44,30 +44,30 @@
 
         fo.OpenDetail = function (id) {
             stackView.pushViewDetail({
-                controller: 'UsersList',
-                formObject: fo, url: 'UsersList',
-                formName: 'UsersList'
+                controller: 'CouponsList',
+                formObject: fo, url: 'CouponsList',
+                formName: 'CouponsList'
             });
-            $state.go('UsersUpdate', { ID: id, redirect: true });
+            $state.go('CouponsUpdate', { ID: id, redirect: true });
         };
 
         fo.Create = function () {
             stackView.pushViewDetail({
-                controller: 'UsersList',
-                formObject: fo, url: 'UsersList',
-                formName: 'UsersList'
+                controller: 'CouponsList',
+                formObject: fo, url: 'CouponsList',
+                formName: 'CouponsList'
             });
-            $state.go('UsersCreate');
+            $state.go('CouponsCreate');
         };
 
         fo.updateActive = function (id, updatedTS, isActive) {
             fo.lv.inActiveModel = {
-                UserID: id,
+                CouponID: id,
                 UpdatedTS: updatedTS,
                 Active: isActive
             };
             var options = {
-                message: 'Are you sure you want to make the user inactive?',
+                message: 'Are you sure you want to make the coupon inactive?',
                 buttons: {
                     success: {
                         label: ' ',
@@ -75,8 +75,8 @@
                         callback: function () {
                             $timeout(function () {
                             }, 100);
-                            UsersListFactory.updateActive(fo.lv.inActiveModel).then(function (data) {
-                                if (data.Message === 'User updated successfully.') // Success
+                            CouponsListFactory.updateActive(fo.lv.inActiveModel).then(function (data) {
+                                if (data.Message === 'Coupon updated successfully.') // Success
                                 {
                                     message.showServerSideMessage(data, true);
                                     $state.reload();
@@ -94,7 +94,7 @@
                 $ngBootbox.customDialog(options);
             }
             else {
-                UsersListFactory.updateActive(fo.lv.inActiveModel).then(function (data) {
+                CouponsListFactory.updateActive(fo.lv.inActiveModel).then(function (data) {
                     if (data.Result === 1) // Success
                     {
                         message.showServerSideMessage(data, true);
@@ -204,7 +204,7 @@
         ////////////////// Helper methods starts Here ////////////////
 
         function submitListOperation() {
-            UsersListFactory.submit(fo.vm).then(function (data) {
+            CouponsListFactory.submit(fo.vm).then(function (data) {
                 fo.vm = data.ReturnedData;
                 makePageNumber();
             });

@@ -35,14 +35,14 @@
                             <tr ng-repeat="item in fo.vm.Data">
                                 <td class="link-transaction">
                                     {{item.Name}}
-                                    <a href="" class="" ng-click="fo.OpenDetail(item.UserID)">
+                                    <a href="" class="" ng-click="fo.OpenDetail(item.CouponID)">
                                         <i class="link-transaction-icon pull-right fa fa-chevron-circle-right"></i>
                                     </a>
                                 </td>
                                 <td>{{item.GoogleID}}</td>
-                                <td>{{item.UserType}}</td>
+                                <td>{{item.CouponType}}</td>
                                 <td class="text-center">
-                                    <input type="checkbox" ng-disabled="!item.IsDeleteEnable" ng-model="item.Active" ng-change="fo.updateActive(item.UserID ,item.UpdatedTS,item.Active)" />
+                                    <input type="checkbox" ng-disabled="!item.IsDeleteEnable" ng-model="item.Active" ng-change="fo.updateActive(item.CouponID ,item.UpdatedTS,item.Active)" />
                             </tr>
                         </table>
                     </div>
@@ -61,7 +61,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="col-sm-12">
-                        <div class="note-detail">No user found.</div>
+                        <div class="note-detail">No coupon found.</div>
                     </div>
                 </div>
             </div>

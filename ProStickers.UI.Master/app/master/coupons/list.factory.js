@@ -2,12 +2,12 @@
     'use strict';
 
     angular
-        .module('app.users')
-        .factory('UsersListFactory', UsersListFactory);
+        .module('app.coupons')
+        .factory('CouponsListFactory', CouponsListFactory);
 
-    UsersListFactory.$inject = ['$http', '$q', 'appUrl'];
+    CouponsListFactory.$inject = ['$http', '$q', 'appUrl'];
 
-    function UsersListFactory($http, $q, appUrl) {
+    function CouponsListFactory($http, $q, appUrl) {
 
         var service = {
             getDefaultViewModel: getDefaultViewModel,
@@ -19,11 +19,11 @@
 
         function getDefaultViewModel() {
             var def = $q.defer();
-            $http.get(appUrl + 'Master/User/GetList').then(function (response) {
+            $http.get(appUrl + 'Master/Coupon/GetList').then(function (response) {
                 def.resolve(response.data);
             })
              .catch(function fail(error) {
-                 console.log('UsersListFactory.getDefaultViewModel', error);
+                 console.log('CouponsListFactory.getDefaultViewModel', error);
                  def.reject(error);
              });
             return def.promise;
@@ -31,11 +31,11 @@
 
         function submit(ViewModel) {
             var def = $q.defer();
-            $http.post(appUrl + 'Master/User/List', ViewModel).then(function (response) {
+            $http.post(appUrl + 'Master/Coupon/List', ViewModel).then(function (response) {
                 def.resolve(response.data);
             })
             .catch(function fail(error) {
-                console.log('UsersListFactory.submit', error);
+                console.log('CouponsListFactory.submit', error);
                 def.reject(error);
             });
             return def.promise;
@@ -43,11 +43,11 @@
 
         function updateActive(viewModel) {
             var def = $q.defer();
-            $http.put(appUrl + 'Master/User/Inactive', viewModel).then(function (response) {
+            $http.put(appUrl + 'Master/Coupon/Inactive', viewModel).then(function (response) {
                 def.resolve(response.data);
             })
             .catch(function fail(error) {
-                console.log('UsersListFactory.updateActive', error);
+                console.log('CouponsListFactory.updateActive', error);
                 def.reject(error);
             });
             return def.promise;
