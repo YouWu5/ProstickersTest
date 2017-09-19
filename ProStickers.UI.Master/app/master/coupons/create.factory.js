@@ -11,7 +11,7 @@
         var service = {
             getDefaultViewModel: getDefaultViewModel,
             submit: submit,
-            getRoleList: getRoleList
+            getTypeList: getTypeList
         };
 
         return service;
@@ -40,13 +40,13 @@
             return def.promise;
         }
 
-        function getRoleList() {
+        function getTypeList() {
             var def = $q.defer();
             $http.get(appUrl + 'Master/Coupon/CouponTypeList').then(function (response) {
                 def.resolve(response.data);
             })
              .catch(function fail(error) {
-                 console.log('CouponsCreateFactory.getRoleList', error);
+                 console.log('CouponsCreateFactory.getTypeList', error);
                  def.reject(error);
              });
             return def.promise;

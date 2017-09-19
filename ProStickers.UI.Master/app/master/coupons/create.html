@@ -81,10 +81,10 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="glyphicon-asterisk control-label">Role</label>
-                                    <select class="Grid-Select" ng-required="true" name="role" ng-options="s.Value as s.Text for s in fo.lv.rolelist" ng-model="fo.vm.CouponTypeID" ng-change="fo.couponRole(fo.vm.CouponTypeID)"></select>
+                                    <label class="glyphicon-asterisk control-label">Type</label>
+                                    <select class="Grid-Select" ng-required="true" name="type" ng-options="s.Value as s.Text for s in fo.lv.typelist" ng-model="fo.vm.CouponTypeID" ng-change="fo.couponType(fo.vm.CouponTypeID)"></select>
                                     <div class="field-validation-error">
-                                        <div ng-messages="CouponCreateForm.role.$error" ng-if="CouponCreateForm.role.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponCreateForm.type.$error" ng-if="CouponCreateForm.type.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>

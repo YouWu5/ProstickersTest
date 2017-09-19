@@ -51,12 +51,12 @@
                  function (CouponsCreateFactory, $q) {
                      var promises = {
                          vm: CouponsCreateFactory.getDefaultViewModel(),
-                         rl: CouponsCreateFactory.getRoleList(),
+                         tl: CouponsCreateFactory.getTypeList(),
                      };
                      return $q.all(promises).then(function (values) {
                          var initData = {};
                          initData.viewModel = values.vm;
-                         initData.roleList = values.rl;
+                         initData.typeList = values.tl;
                          return initData;
                      });
                  }]

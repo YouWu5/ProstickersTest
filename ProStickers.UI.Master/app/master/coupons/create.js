@@ -17,7 +17,7 @@
         fo.lv = {};
         fo.lv.title = 'Add Coupon';
         fo.lv.showSkypeId = false;
-        fo.lv.rolelist = [];
+        fo.lv.typelist = [];
 
         //////////// Variable declaration. ends here//////////////
 
@@ -27,7 +27,7 @@
 
         function initializeController() {
             fo.vm = initialDataOfCouponsCreate.viewModel;
-            fo.lv.rolelist = initialDataOfCouponsCreate.roleList;
+            fo.lv.typelist = initialDataOfCouponsCreate.typeList;
             console.log('fo.vm @ initialize', fo.vm);
             fo.vm.CouponTypeID = 1;
             fo.lv.uploadImage = ' ';
@@ -37,7 +37,7 @@
 
         ////////////// Click methods start here ////////////////
 
-        fo.couponRole = function (selectedCouponTypeID) {
+        fo.couponType = function (selectedCouponTypeID) {
             if (selectedCouponTypeID === 2) { // Designer
                 fo.lv.showSkypeId = true;
             }
@@ -82,7 +82,7 @@
                 fo.lv.isFormInvalid = true;
                 return;
             }
-            angular.forEach(fo.lv.rolelist, function (value) {
+            angular.forEach(fo.lv.typelist, function (value) {
                 if (value.Value === fo.vm.CouponTypeID) {
                     fo.vm.CouponType = value.Text;
                 }
