@@ -30,21 +30,12 @@
             fo.lv.typelist = initialDataOfCouponsCreate.typeList;
             console.log('fo.vm @ initialize', fo.vm);
             fo.vm.CouponTypeID = 1;
-            fo.lv.uploadImage = ' ';
+            // fo.lv.uploadImage = ' ';
         }
 
         /////////// Initilize controller ends here //////////////
 
         ////////////// Click methods start here ////////////////
-
-        fo.couponType = function (selectedCouponTypeID) {
-            if (selectedCouponTypeID === 2) { // Designer
-                fo.lv.showSkypeId = true;
-            }
-            else {
-                fo.lv.showSkypeId = false;
-            }
-        };
 
         fo.Cancel = function () {
             var options = {
@@ -69,12 +60,6 @@
             }
         };
 
-        fo.clearImage = function () {
-            $('#img').val(null);
-            fo.lv.uploadImage = ' ';
-            fo.vm.ImageBuffer = null;
-        };
-
         fo.Save = function () {
             if ($scope.CouponCreateForm.$invalid) {
                 console.log('$scope.CouponCreateForm', $scope.CouponCreateForm.$error);
@@ -87,16 +72,6 @@
                     fo.vm.CouponType = value.Text;
                 }
             });
-            if (fo.lv.uploadImage !== undefined && fo.lv.uploadImage !== null && angular.equals(' ', fo.lv.uploadImage) !== true) {
-                var image = new RegExp(/^data:image\/(png|jpeg|jpg|gif|bmp);base64,/);
-                if (image.test(fo.lv.uploadImage)) {
-                    if (fo.lv.uploadImage !== undefined && fo.lv.uploadImage !== null) {
-                        fo.vm.ImageBuffer = fo.lv.uploadImage;
-                        fo.vm.ImageBuffer = fo.vm.ImageBuffer.replace(/^data:image\/(png|jpeg|jpg|gif|bmp);base64,/, '');
-                        fo.vm.isNew = true;
-                    }
-                }
-            }
             CouponsCreateFactory.submit(fo.vm).then(function (data) {
                 if (data.Result === 1) // Success
                 {

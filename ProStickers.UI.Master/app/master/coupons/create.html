@@ -20,82 +20,41 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="glyphicon-asterisk control-label">First name</label>
-                                    <input type="text" class="form-control" autocomplete="off" name="firstName" maxlength="60" ng-required="true" ng-model="fo.vm.FirstName" />
+                                    <label class="glyphicon-asterisk control-label">Coupon Code</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="CouponCode" maxlength="60" ng-required="true" ng-model="fo.vm.CouponCode" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="CouponCreateForm.firstName.$error" ng-if="CouponCreateForm.firstName.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponCreateForm.CouponCode.$error" ng-if="CouponCreateForm.CouponCode.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="control-label">Middle name</label>
-                                    <input type="text" class="form-control" autocomplete="off" name="middleName" maxlength="60" ng-model="fo.vm.MiddleName" />
+                                    <label class="glyphicon-asterisk control-label">Amount</label>
+                                    <input type="text" class="form-control" autocomplete="off" name="Amount" maxlength="3" minlength="1" ng-required="true" ng-pattern="^[0-9]*$" ng-model="fo.vm.Amount" />
                                     <div class="field-validation-error">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="glyphicon-asterisk control-label">Last name</label>
-                                    <input type="text" class="form-control" autocomplete="off" name="lastName" maxlength="60" ng-required="true" ng-model="fo.vm.LastName" />
-                                    <div class="field-validation-error">
-                                        <div ng-messages="CouponCreateForm.lastName.$error" ng-if="CouponCreateForm.lastName.$touched || fo.lv.isFormInvalid">
-                                            <span ng-message="required">Required</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="glyphicon-asterisk control-label">Google id</label>
-                                    <input type="text" class="form-control" autocomplete="off" name="googleid" maxlength="60" ng-required="true" ng-pattern="/^[_a-z_A-Z0-9]+(\.[_a-z_A-Z0-9]+)*@[a-z_A-Z0-9-]+(\.[a-z_A-Z0-9-]+)*(\.[a-z_A-Z]{2,5})$/" ng-model="fo.vm.GoogleID" />
-                                    <div class="field-validation-error">
-                                        <div ng-messages="CouponCreateForm.googleid.$error" ng-if="CouponCreateForm.googleid.$touched || fo.lv.isFormInvalid">
+                                        <div ng-messages="CouponCreateForm.Amount.$error" ng-if="CouponCreateForm.Amount.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                             <span ng-message="pattern">Invalid</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
-                                    <label class="control-label">Brief bio/description</label>
-                                    <textarea autocomplete="off" name="descriptions" maxlength="500" ng-model="fo.vm.Description" />
-                                    <div class="field-validation-error">
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="control-label control-label no-margin-bottom">Image</label>
-                                    <label class="small-heading"></label>
-                                    <div class="col-sm-6 col-xs-6  no-padding">
-                                        <span class="file-input button button-green import-button btn-file" title="Browse">
-                                            Browse <input type="file" title="Browse" ng-model="fo.lv.novalue" class="filestyle" accept="image/*" file-read-coupon-image="fo.lv.uploadImage" clear-function="fo.clearImage()" id="img">
-                                        </span>
-                                        <div class="field-validation-error col-sm-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <div ng-if="fo.lv.uploadImage !== ' '">
-                                        <img class="companyLogoNew" ng-src="{{fo.lv.uploadImage}}" />
-                                        <a href="" class="fa fa-times padding-10-left" ng-click="fo.clearImage()"></a>
-                                    </div>
-                                    <div class="field-validation-error col-sm-12 col-xs-12">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
                                 <div class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
                                     <label class="glyphicon-asterisk control-label">Type</label>
-                                    <select class="Grid-Select" ng-required="true" name="type" ng-options="s.Value as s.Text for s in fo.lv.typelist" ng-model="fo.vm.CouponTypeID" ng-change="fo.couponType(fo.vm.CouponTypeID)"></select>
+                                    <select class="Grid-Select" ng-required="true" name="type" ng-options="t.Value as t.Text for t in fo.lv.typeList" ng-model="fo.vm.CouponTypeID" ></select>
                                     <div class="field-validation-error">
                                         <div ng-messages="CouponCreateForm.type.$error" ng-if="CouponCreateForm.type.$touched || fo.lv.isFormInvalid">
                                             <span ng-message="required">Required</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div ng-show="fo.lv.showSkypeId" class="col-xs-12 col-sm-6 col-lg-3 col-md-4">
-                                    <label class="glyphicon-asterisk control-label">Skype id</label>
-                                    <input type="text" class="form-control" autocomplete="off" name="skypeid" maxlength="60" ng-required="fo.lv.showSkypeId" ng-model="fo.vm.SkypeID" />
+                                <div class="col-xs-12 col-sm-12 col-lg-6 col-md-8">
+                                    <label class="control-label">Discount</label>
+                                    <textarea autocomplete="off" name="Discount" maxlength="500" ng-model="fo.vm.Discount" />
                                     <div class="field-validation-error">
-                                        <div ng-messages="CouponCreateForm.skypeid.$error" ng-if="CouponCreateForm.skypeid.$touched || fo.lv.isFormInvalid">
-                                            <span ng-message="required">Required</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
