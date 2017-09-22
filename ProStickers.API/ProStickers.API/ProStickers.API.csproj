@@ -204,6 +204,7 @@
     <Compile Include="Controllers\Designer\DesignerTimeSlotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Master\ColorChartController.cs" />
+    <Compile Include="Controllers\Master\CouponController.cs" />
     <Compile Include="Controllers\Master\CustomerDetailController.cs" />
     <Compile Include="Controllers\Master\FeedbackController.cs" />
     <Compile Include="Controllers\Master\OrderTrackingController.cs" />
